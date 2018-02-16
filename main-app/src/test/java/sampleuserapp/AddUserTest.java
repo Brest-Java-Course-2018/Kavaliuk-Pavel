@@ -16,7 +16,8 @@ public class AddUserTest {
     private static final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     private final String EXPECTED_RESULT_1 = "Create table method\n";
-    private final String EXPECTED_RESULT_2 = EXPECTED_RESULT_1 + "Add user ivan\n";
+    private final String EXPECTED_RESULT_2 = EXPECTED_RESULT_1 + "Add user ivan\n" +
+            "User: 1, login: ivan\n";
 
     @Before
     public void setUpStream() {
@@ -35,6 +36,7 @@ public class AddUserTest {
         Connection connection = dbUtils.getConnection();
         dbUtils.createUserTable(connection);
         dbUtils.addUser(connection, "ivan", "admin", "this is a test");
+        dbUtils.getUsers(connection);
         assertEquals(EXPECTED_RESULT_2, outContent.toString());
     }
 
