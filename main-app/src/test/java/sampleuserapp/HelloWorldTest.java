@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.sql.SQLException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -35,8 +36,8 @@ public class HelloWorldTest {
     This procedure compares needed string with obtained.
      */
     @Test
-    public void returnTest(){
-        // App.main(args);
-        //assertEquals("Hello World!\n", outContent.toString());
+    public void returnTest() throws SQLException, ClassNotFoundException {
+//        App.main(args);
+//        assertEquals("Hello World!\n", outContent.toString());
     }
 }
