@@ -14,6 +14,15 @@ import static org.junit.Assert.assertEquals;
 public class HelloWorldTest {
     private static String args[];
 
+    private final String EXPECTED_RESULT = "Hello World!\n" +
+            "Create table method\n" +
+            "Add user admin\nAdd user anton\nAdd user vlad\n" +
+            "User: 1, login: admin\n" +
+            "User: 2, login: anton\n" +
+            "User: 3, login: vlad\n" +
+            "Delete user admin\n" +
+            "User: 2, login: anton\n" +
+            "User: 3, login: vlad\n";
     private static final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     /*
     This method will be invoked before procedure which annotated like @Test.
@@ -37,7 +46,7 @@ public class HelloWorldTest {
      */
     @Test
     public void returnTest() throws SQLException, ClassNotFoundException {
-//        App.main(args);
-//        assertEquals("Hello World!\n", outContent.toString());
+        App.main(args);
+        assertEquals(EXPECTED_RESULT, outContent.toString());
     }
 }

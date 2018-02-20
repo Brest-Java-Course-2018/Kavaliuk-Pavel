@@ -1,6 +1,5 @@
-package sampleuserapp;
+package com.epam.brest.cource;
 
-import com.epam.brest.cource.DBUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,24 +28,14 @@ public class AddUserTest {
         System.setOut(System.out);
     }
 
-    //DBUtils dbUtils = new DBUtils();
+    DBUtils dbUtils = new DBUtils();
 
     @Test
     public void addUserTest() throws SQLException, ClassNotFoundException {
-//        Connection connection = dbUtils.getConnection();
-//        dbUtils.createUserTable(connection);
-//        dbUtils.addUser(connection, "ivan", "admin", "this is a test");
-//        dbUtils.getUsers(connection);
-//        assertEquals(EXPECTED_RESULT_2, outContent.toString());
+        Connection connection = dbUtils.getConnection();
+        dbUtils.createUserTable(connection);
+        dbUtils.addUser(connection, "ivan", "admin", "this is a test");
+        dbUtils.getUsers(connection);
+        assertEquals(EXPECTED_RESULT_2, outContent.toString());
     }
-
-    @Test
-    public void createTableTest() throws SQLException, ClassNotFoundException {
-
-//        Connection connection = dbUtils.getConnection();
-//        dbUtils.createUserTable(connection);
-//        assertEquals(EXPECTED_RESULT_2 + EXPECTED_RESULT_1, outContent.toString());
-
-    }
-
 }
