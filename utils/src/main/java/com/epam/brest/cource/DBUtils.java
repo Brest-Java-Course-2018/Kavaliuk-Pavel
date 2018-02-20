@@ -16,7 +16,6 @@ public class DBUtils {
     private String ADD_NEW_USER = "INSERT INTO app_user (login, password, description) VALUES (?, ?, ?);";
     private String SELECT_USER = "SELECT user_id, login, password, description FROM app_user";
     private String DELETE_USER = "DELETE FROM app_user WHERE login = ?";
-    private String REMOVE_TABLE = "DROP TABLE app_user";
 
     Statement statement = null;
     PreparedStatement preparedStatement = null;
@@ -47,7 +46,7 @@ public class DBUtils {
             preparedStatement.executeUpdate();
         } finally {
             System.out.println(String.format("Add user %s", login));
-            //preparedStatement.close();
+            preparedStatement.close();
         }
     }
 
@@ -71,7 +70,7 @@ public class DBUtils {
             preparedStatement.executeUpdate();
             System.out.println(String.format("Delete user %s", login));
         } finally {
-            // preparedStatement.close();
+            preparedStatement.close();
         }
     }
 }
