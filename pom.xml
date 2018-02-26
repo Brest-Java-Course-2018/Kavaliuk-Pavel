@@ -13,20 +13,17 @@
     <url>http://maven.apache.org</url>
 
     <modules>
-        <module>utils</module>
-        <module>main-app</module>
+        <module>model</module>
     </modules>
 
     <distributionManagement>
         <site>
             <id>${project.artifactId}</id>
             <url>${project.baseUri}</url>
-            <!--<url>File://home/wondercat/Projects/Kavaliuk-Pavel</url>-->
         </site>
     </distributionManagement>
 
     <properties>
-        <!--<project.baseUri>File://home/wondercat/Projects/Kavaliuk-Pavel</project.baseUri>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <h2.version>1.4.196</h2.version>
     </properties>
