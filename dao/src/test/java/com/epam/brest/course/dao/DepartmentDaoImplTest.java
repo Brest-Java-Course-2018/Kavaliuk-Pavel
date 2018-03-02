@@ -16,8 +16,14 @@ import java.util.List;
 
 public class DepartmentDaoImplTest {
 
+    private final String RESIEVED_NAME = "";
+    private final String RESIEVED_DESPRIPTION = "";
+    private final int RESIEVED_ID = 0;
+
     @Autowired
     DepartmentDao departmentDao;
+
+    Department departmentForTesting;
 
     @Test
     public void getDepartments() {
@@ -35,5 +41,38 @@ public class DepartmentDaoImplTest {
         Assert.assertTrue(department.getDepartmentId().equals(1));
         Assert.assertTrue(department.getDepartmentName().equals("Distribution"));
         Assert.assertTrue(department.getDescription().equals("Distribution Department"));
+
+    }
+
+    @Test
+    public void addDepartmentTest() {
+
+        Department department = new Department();
+        department.setDepartmentId(1);
+        department.setDepartmentName("Test department");
+        department.setDescription("Test department");
+        departmentDao.addDepartment(department);
+        departmentForTesting = departmentDao.addDepartment(department);
+        Assert.assertTrue(departmentForTesting.getDepartmentName().equals("Test department"));
+        Assert.assertTrue(departmentForTesting.getDescription().equals("Test department"));
+    }
+
+    @Test
+    public void updateDepartmentTest() {
+        Department department = new Department();
+        department.setDepartmentId(1);
+        department.setDepartmentName("Another one name");
+        department.setDescription("Another one description");
+        departmentDao.updateDepartment(department);
+        departmentForTesting = departmentDao.addDepartment(department);
+        Assert.assertTrue(departmentForTesting.getDepartmentName().equals("Another one name"));
+        Assert.assertTrue(departmentForTesting.getDescription().equals("Another one description"));
+    }
+
+    @Test
+    public void deleteDepartmentTest() {
+        departmentDao.deleteDepartmentById(1);
+        List<Department> departmentList = departmentDao.getDepartment();
+        Assert.assertTrue(departmentList.isEmpty());
     }
 }

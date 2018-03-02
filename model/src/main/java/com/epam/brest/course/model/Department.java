@@ -9,6 +9,7 @@ public class Department {
 
     private Integer departmentId;
     private String departmentName;
+    private String description;
 
 
     @Override
@@ -44,6 +45,5 @@ public class Department {
         this.description = description;
     }
 
-    private String description;
 
 }
