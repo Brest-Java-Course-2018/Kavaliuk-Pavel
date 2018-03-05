@@ -11,6 +11,15 @@ public class Department {
     private String departmentName;
     private String description;
 
+    public Department() {
+
+    }
+
+    public Department(String departmentName, String description) {
+        this.departmentName = departmentName;
+        this.description = description;
+    }
+
 
     @Override
     public String toString() {
