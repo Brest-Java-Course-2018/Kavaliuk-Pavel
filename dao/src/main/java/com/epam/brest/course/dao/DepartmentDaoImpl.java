@@ -58,6 +58,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
      */
     @Override
     public List<Department> getDepartment() {
+
         List<Department> departments = namedParameterJdbcTemplate.getJdbcOperations().query(departmentSelect,
                 new DepartmentRowMapper());
         return departments;

@@ -9,7 +9,17 @@ public class Employee {
     private Integer employeeId;
     private String employeeName;
     private Integer salary;
-    private Integer departmentId;
+    private Integer departmentFatherId;
+
+    public Employee(String employeeName, Integer salary, Integer departmentFatherId) {
+        this.employeeName = employeeName;
+        this.salary = salary;
+        this.departmentFatherId = departmentFatherId;
+    }
+
+    public Employee() {
+
+    }
 
 
     @Override
@@ -18,15 +28,10 @@ public class Employee {
                 "employeeId=" + employeeId +
                 ", employeeName='" + employeeName + '\'' +
                 ", salary=" + salary +
-                ", departmentId=" + departmentId +
+                ", departmentFatherId=" + departmentFatherId +
                 '}';
     }
 
-    /**
-     * Get employee Id.
-     *
-     * @return employeeId
-     */
     public Integer getEmployeeId() {
         return employeeId;
     }
@@ -51,11 +56,11 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Integer getDepartmentId() {
-        return departmentId;
+    public Integer getDepartmentFatherId() {
+        return departmentFatherId;
     }
 
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartmentFatherId(Integer departmentId) {
+        this.departmentFatherId = departmentId;
     }
 }

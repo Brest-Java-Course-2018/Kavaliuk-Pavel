@@ -2,9 +2,7 @@ package com.epam.brest.course.dao;
 
 import com.epam.brest.course.model.Department;
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -151,7 +149,7 @@ public class DepartmentDaoImplTest {
     }
 
     @Test
-    public void addDepartmenttTest() {
+    public void addDepartmentTest() {
         List<Department> departments = departmentDao.getDepartment();
         int sizeBefore = departments.size();
         Department dep = new Department("Test name", "Test descr");
@@ -163,25 +161,4 @@ public class DepartmentDaoImplTest {
         Assert.assertTrue(sizeBefore < departmentDao.getDepartment().size());
 
     }
-
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
-    @Test
-    public void addDepartmenttTestWithRule() {
-        List<Department> departments = departmentDao.getDepartment();
-        int sizeBefore = departments.size();
-        Department dep = new Department("Test name", "Test descr");
-
-        Department dep1 = departmentDao.addDepartment(dep);
-        Assert.assertNotNull(dep1.getDepartmentId());
-        Assert.assertTrue(dep1.getDepartmentName().equals(dep.getDepartmentName()));
-        Assert.assertTrue(dep1.getDescription().equals(dep.getDescription()));
-        Assert.assertTrue(sizeBefore < departmentDao.getDepartment().size());
-
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Department already exist");
-    }
-
 }
