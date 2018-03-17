@@ -4,21 +4,21 @@ package com.epam.brest.course.model;
  * POJO Department for model.
  */
 
-
 public class Department {
     /**
      * This is department's id
      */
     private Integer departmentId;
     /**
+     *
      * This is department's name
      */
     private String departmentName;
     /**
+     *
      * This is department's description
      */
     private String description;
-
     /**
      * Empty constructor
      * Do nosing as fact
@@ -32,7 +32,7 @@ public class Department {
      * @param departmentName - name of department
      * @param description - description of department
      */
-    public Department(String departmentName, String description) {
+    public Department(final String departmentName, final String description) {
         this.departmentName = departmentName;
         this.description = description;
     }
@@ -47,7 +47,7 @@ public class Department {
         return "Department{"
                 + "departmentId=" + departmentId
                 + ", departmentName='" + departmentName + '\''
-                +", description='" + description + '\''
+                + ", description='" + description + '\''
                 + '}';
     }
 
@@ -63,7 +63,7 @@ public class Department {
      * Set department's id
      * @param departmentId id which will be department's id
      */
-    public void setDepartmentId(Integer departmentId) {
+    public void setDepartmentId(final Integer departmentId) {
         this.departmentId = departmentId;
     }
 
@@ -79,7 +79,7 @@ public class Department {
      * Set department's name
      * @param departmentName string which will be department's name
      */
-    public void setDepartmentName(String departmentName) {
+    public void setDepartmentName(final String departmentName) {
         this.departmentName = departmentName;
     }
 
@@ -95,7 +95,7 @@ public class Department {
      * Set department's description
      * @param description string which will be department's description
      */
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 }

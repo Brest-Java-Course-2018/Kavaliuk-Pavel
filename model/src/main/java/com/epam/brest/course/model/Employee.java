@@ -28,8 +28,8 @@ public class Employee {
      * @param salary employee's salary
      * @param departmentFatherId department's id which employee belongs
      */
-    public Employee(String employeeName, Integer salary,
-                    Integer departmentFatherId) {
+    public Employee(final String employeeName, final Integer salary,
+                    final Integer departmentFatherId) {
         this.employeeName = employeeName;
         this.salary = salary;
         this.departmentFatherId = departmentFatherId;
@@ -70,7 +70,7 @@ public class Employee {
      * Set employee's id
      * @param employeeId id of employee
      */
-    public void setEmployeeId(Integer employeeId) {
+    public void setEmployeeId(final Integer employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -86,7 +86,7 @@ public class Employee {
      * Set employee's name
      * @param employeeName name of employee
      */
-    public void setEmployeeName(String employeeName) {
+    public void setEmployeeName(final String employeeName) {
         this.employeeName = employeeName;
     }
 
@@ -102,7 +102,7 @@ public class Employee {
      * Set employee's salary
      * @param salary employee's salary
      */
-    public void setSalary(Integer salary) {
+    public void setSalary(final Integer salary) {
         this.salary = salary;
     }
 
@@ -118,7 +118,7 @@ public class Employee {
      * Set department's id which employee belongs
      * @param departmentId department's id which employee belongs
      */
-    public void setDepartmentFatherId(Integer departmentId) {
+    public void setDepartmentFatherId(final Integer departmentId) {
         this.departmentFatherId = departmentId;
     }
 }
