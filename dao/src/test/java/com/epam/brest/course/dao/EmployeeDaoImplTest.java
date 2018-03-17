@@ -25,6 +25,7 @@ import java.util.List;
 public class EmployeeDaoImplTest {
 
     public static final String TEST_NAME = "Test name";
+
     @Autowired
     EmployeeDao employeeDao;
 
@@ -82,12 +83,15 @@ public class EmployeeDaoImplTest {
         Employee employee = new Employee(TEST_NAME, 500, 1);
 
         Employee newEmployee = employeeDao.addEmployee(employee);
+
         newEmployee.setEmployeeName("New name");
         newEmployee.setSalary(600);
         newEmployee.setDepartmentFatherId(1);
         employeeDao.updateEmployee(newEmployee);
+
         Employee updatedEmployee = employeeDao.getEmployeeById
                 (newEmployee.getEmployeeId());
+
         Assert.assertTrue(newEmployee.getEmployeeId().equals
                 (updatedEmployee.getEmployeeId()));
         Assert.assertTrue(newEmployee.getEmployeeName()
@@ -112,5 +116,21 @@ public class EmployeeDaoImplTest {
         int sizeBefore = employees.size();
         employeeDao.deleteEmployeeById(employee.getEmployeeId());
         Assert.assertTrue((sizeBefore - 1) == employeeDao.getEmployee().size());
+    }
+
+    /**
+     *This test creates new employee's instance and adds it into table.
+     * After it, method compares expected number of employees in
+     * list with expected
+     */
+    @Test
+    public void getEmployeesByDepartmentTest(){
+
+        Employee employee = new Employee(TEST_NAME, 200, 1);
+        employeeDao.addEmployee(employee);
+        employee = new Employee(TEST_NAME + TEST_NAME, 200, 1);
+        employeeDao.addEmployee(employee);
+        List<Employee> department = employeeDao.getEmployeesByDepartment(1);
+        Assert.assertTrue(department.size() == 3);
     }
 }

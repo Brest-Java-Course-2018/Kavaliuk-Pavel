@@ -18,7 +18,7 @@ public interface EmployeeDao {
 
     /**
      * @param employee employee to add
-     * @return object of eployee witch will be add into table
+     * @return object of employee witch will be add into table
      */
     Employee addEmployee(Employee employee);
 
@@ -31,4 +31,11 @@ public interface EmployeeDao {
      * @param id id of employee witch will be delete
      */
     void deleteEmployeeById(Integer id);
+
+    /**
+     * Gets employees of required department with required id
+     * @param departmentId department's id
+     * @return list of employees
+     */
+    List<Employee> getEmployeesByDepartment(Integer departmentId);
 }
