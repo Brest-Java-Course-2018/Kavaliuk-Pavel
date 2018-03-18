@@ -52,12 +52,7 @@
                 <artifactId>service</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.epam.brest.course</groupId>
-                <artifactId>test-db</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
+
             <dependency>
                 <groupId>com.epam.brest.course</groupId>
                 <artifactId>web-app</artifactId>
@@ -135,7 +130,12 @@
                 <version>3.5.1</version>
                 <scope>test</scope>
             </dependency>
-
+            <dependency>
+                <groupId>com.epam.brest.course</groupId>
+                <artifactId>test-db</artifactId>
+                <version>${project.version}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

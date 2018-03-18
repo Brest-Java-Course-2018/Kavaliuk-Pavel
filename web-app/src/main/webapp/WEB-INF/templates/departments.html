@@ -25,7 +25,9 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <a href="departments.html" class="navbar-brand">
+    <a href="departments.html"
+       th:href="@{/departments}"
+       class="navbar-brand">
         <img src="../../resources/static/img1/icon.svg"
              th:src="@{/resources/static/img1/icon.svg}"
              width="64" height="32">
@@ -33,9 +35,14 @@
 
     <div class="collapse navbar-collapse" id="navbarNavs">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="departments.html">Departments <span
-                    class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="employees.html">Employees</a>
+            <a class="nav-item nav-link active"
+               href="departments.html"
+               th:href="@{/departments}">Departments
+                <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link"
+               href="employees.html"
+               th:href="@{/employees}"
+            >Employees</a>
 
         </div>
     </div>
@@ -83,7 +90,9 @@
                         <td>CEO</td>
                         <td>10000</td>
                         <td class="text">
-                            <a href="department.html" class="btn-sm btn-outline-secondary"
+                            <a href="department.html"
+                               th:href="@{/department/1}"
+                               class="btn-sm btn-outline-secondary"
                                data-toggle="tooltip"
                                data-placement="bottom"
                                title="Edit">
@@ -107,7 +116,9 @@
                         <td>&nbsp&nbsp&nbsp Accounting</td>
                         <td>2500</td>
                         <td class="text">
-                            <a href="department.html" class="btn-sm btn-outline-secondary"
+                            <a href="department.html"
+                               th:href="@{/department}"
+                               class="btn-sm btn-outline-secondary"
                                data-toggle="tooltip"
                                data-placement="bottom"
                                title="Edit">
@@ -131,7 +142,9 @@
                         <td>&nbsp&nbsp&nbsp Development</td>
                         <td>1150</td>
                         <td class="text">
-                            <a href="department.html" class="btn-sm btn-outline-secondary"
+                            <a href="department.html"
+                               th:href="@{/department}"
+                               class="btn-sm btn-outline-secondary"
                                data-toggle="tooltip"
                                data-placement="bottom"
                                title="Edit">
@@ -155,7 +168,9 @@
                         <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Java</td>
                         <td>1500</td>
                         <td class="text">
-                            <a href="department.html" class="btn-sm btn-outline-secondary"
+                            <a href="department.html"
+                               th:href="@{/department}"
+                               class="btn-sm btn-outline-secondary"
                                data-toggle="tooltip"
                                data-placement="bottom"
                                title="Edit">
@@ -179,7 +194,9 @@
                         <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Testing</td>
                         <td>1100</td>
                         <td class="text">
-                            <a href="department.html" class="btn-sm btn-outline-secondary"
+                            <a href="department.html"
+                               th:href="@{/department}"
+                               class="btn-sm btn-outline-secondary"
                                data-toggle="tooltip"
                                data-placement="bottom"
                                title="Edit">
@@ -203,7 +220,9 @@
                         <td>&nbsp&nbsp&nbsp People managment</td>
                         <td>800</td>
                         <td class="text">
-                            <a href="department.html" class="btn-sm btn-outline-secondary"
+                            <a href="department.html"
+                               th:href="@{/department}"
+                               class="btn-sm btn-outline-secondary"
                                data-toggle="tooltip"
                                data-placement="bottom"
                                title="Edit">

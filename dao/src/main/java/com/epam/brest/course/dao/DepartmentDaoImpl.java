@@ -46,6 +46,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
 //    @Value("${department.avgSalary}")
 //    private String departmentAvgSalary;
 
+
+
     /**
      * Allow use ":parameter" rather than "?" in requests.
      */
@@ -58,6 +60,10 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
     public void setNamedParameterJdbcTemplate
     (NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
+
+    public DepartmentDaoImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 

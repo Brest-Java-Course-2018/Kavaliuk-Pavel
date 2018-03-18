@@ -13,12 +13,12 @@
         <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
     </bean>
 
-    <bean id="employeeDao" class="com.epam.brest.course.dao.EmployeeDaoImpl">
-        <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
-    </bean>
-
     <bean id="departmentService" class="com.epam.brest.course.service.DepartmentServiceImpl">
         <constructor-arg ref="departmentDao"/>
+    </bean>
+
+    <bean id="employeeDao" class="com.epam.brest.course.dao.EmployeeDaoImpl">
+        <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
     </bean>
 
     <bean id="employeeService" class="com.epam.brest.course.service.EmployeeServiceImpl">

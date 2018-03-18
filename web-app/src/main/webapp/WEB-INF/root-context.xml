@@ -3,12 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xsi:schemaLocation="http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+        http://www.springframework.org/schema/context/spring-context-4.3.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+
+    <import resource="sample-db-spring.xml"/>
 
     <!-- Use spring servlet for all requests, including static resources -->
     <mvc:default-servlet-handler/>
@@ -20,6 +23,20 @@
     <context:component-scan base-package="com.epam.brest.course.*"/>
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
+
+    <bean id="namedParameterJdbcTemplate"
+          class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="departmentDao" class="com.epam.brest.course.dao.DepartmentDaoImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="departmentService"
+          class="com.epam.brest.course.service.DepartmentServiceImpl">
+        <constructor-arg ref="departmentDao"/>
+    </bean>
 
     <!-- Thymeleaf Template Resolver -->
     <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
@@ -43,6 +60,15 @@
         <property name="characterEncoding" value="UTF-8" />
     </bean>
 
-    <context:property-placeholder location="classpath:application.properties"/>
+    <!--<context:property-placeholder location="classpath:application.properties"/>-->
 
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:sql.properties</value>
+                <value>classpath:application.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean>
 </beans>
