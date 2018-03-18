@@ -5,7 +5,7 @@ import com.epam.brest.course.model.Employee;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * Interaction service and DAO
@@ -29,10 +29,10 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return list of employees
      */
     @Override
-    public List<Employee> getAllEmployees() {
+    public Collection<Employee> getAllEmployees() {
 
         LOGGER.debug("getAllEmployees()");
-        List<Employee> employees = employeeDao.getEmployee();
+        Collection<Employee> employees = employeeDao.getEmployee();
         return employees;
     }
 
@@ -53,11 +53,11 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return list with employees
      */
     @Override
-    public List<Employee> getEmployeesByDepartment(Integer departmentId) {
+    public Collection<Employee> getEmployeesByDepartment(Integer departmentId) {
 
         LOGGER.debug("getEmployeeByDepartment({})", departmentId);
 
-        List<Employee> employees = employeeDao.getEmployeesByDepartment(departmentId);
+        Collection<Employee> employees = employeeDao.getEmployeesByDepartment(departmentId);
         return employees;
     }
 

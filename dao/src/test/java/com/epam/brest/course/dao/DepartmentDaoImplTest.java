@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -44,7 +45,7 @@ public class DepartmentDaoImplTest {
         departmentForTesting.setDepartmentName(TEST_NAME);
         departmentForTesting.setDescription(TEST_NAME);
         departmentDao.addDepartment(departmentForTesting);
-        List<Department> departments = departmentDao.getDepartment();
+        Collection<Department> departments = departmentDao.getDepartment();
         Assert.assertFalse(departments.isEmpty());
     }
 
@@ -136,7 +137,7 @@ public class DepartmentDaoImplTest {
                 new Department("Test name", "Test descr");
         department = departmentDao.addDepartment(department);
 
-        List<Department> departments = departmentDao.getDepartment();
+        Collection<Department> departments = departmentDao.getDepartment();
         int sizeBefore = departments.size();
         departmentDao.deleteDepartmentById(department.getDepartmentId());
         Assert.assertTrue((sizeBefore - 1) == departmentDao.getDepartment().size());
@@ -150,7 +151,7 @@ public class DepartmentDaoImplTest {
 
     @Test
     public void addDepartmentTest() {
-        List<Department> departments = departmentDao.getDepartment();
+        Collection<Department> departments = departmentDao.getDepartment();
         int sizeBefore = departments.size();
         Department dep = new Department("Test name", "Test descr");
 

@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Collection;
+import java.util.Collections;
+
 /**
  *Controller of Department
  */
@@ -22,8 +25,11 @@ public class DepartmentController {
      * @return departments page
      */
     @GetMapping(value = "departments")
-    public String departments(Model model) {
+    public String getDepartments(Model model) {
+        Collection<Department> departments = departmentService.getDepartment();
+                //Collections.emptyList();
 
+        model.addAttribute("departments", departments);
         return "departments";
     }
 

@@ -3,6 +3,8 @@ package com.epam.brest.course.service;
 import com.epam.brest.course.model.Department;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+
 /**
  * Department Service interface
  */
@@ -22,4 +24,12 @@ public interface DepartmentService {
      * @param description new description
      */
     void updateDepartmentDescription(Integer departmentId, String description);
+
+    /**
+     * Gets all writes from department's table
+     * @return department's collection
+     */
+    Collection<Department> getDepartment();
+
+
 }

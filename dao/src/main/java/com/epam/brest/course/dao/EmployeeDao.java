@@ -2,13 +2,13 @@ package com.epam.brest.course.dao;
 
 import com.epam.brest.course.model.Employee;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface EmployeeDao {
     /**
      * @return list with all employees
      */
-    List<Employee> getEmployee();
+    Collection<Employee> getEmployee();
 
     /**
      * @param employeeId id of required employee
@@ -37,5 +37,5 @@ public interface EmployeeDao {
      * @param departmentId department's id
      * @return list of employees
      */
-    List<Employee> getEmployeesByDepartment(Integer departmentId);
+    Collection<Employee> getEmployeesByDepartment(Integer departmentId);
 }

@@ -15,7 +15,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.Collection;
 
 public class EmployeeDaoImpl implements EmployeeDao {
 
@@ -62,10 +62,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
      * @return list of employees
      */
     @Override
-    public List<Employee> getEmployee() {
+    public Collection<Employee> getEmployee() {
         LOGGER.debug("getEmployee()");
 
-        List<Employee> employees = namedParameterJdbcTemplate.
+        Collection<Employee> employees = namedParameterJdbcTemplate.
                 getJdbcOperations().query(getAllEmployees,
                 new EmployeeRowMapper());
         LOGGER.debug("count = {}", employees.size());
@@ -166,11 +166,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
      * @return list of employees
      */
     @Override
-    public List<Employee> getEmployeesByDepartment(final Integer departmentFatherId) {
+    public Collection<Employee> getEmployeesByDepartment(final Integer departmentFatherId) {
 
         LOGGER.debug("getEmployeesByDepartment({})", departmentFatherId);
 
-        List<Employee> employees = namedParameterJdbcTemplate
+        Collection<Employee> employees = namedParameterJdbcTemplate
                 .getJdbcOperations().query(getEmployeesByDepartment,
                         new Object[]{departmentFatherId},
                         BeanPropertyRowMapper.newInstance(Employee.class));

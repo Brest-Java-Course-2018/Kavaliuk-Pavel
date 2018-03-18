@@ -2,7 +2,7 @@ package com.epam.brest.course.service;
 
 import com.epam.brest.course.model.Employee;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface EmployeeService {
 
@@ -10,7 +10,7 @@ public interface EmployeeService {
      * Gets collection of employees
      * @return collection of employees
      */
-    List<Employee> getAllEmployees();
+    Collection<Employee> getAllEmployees();
 
     /**
      * Deletes required employee
@@ -43,5 +43,5 @@ public interface EmployeeService {
      * @param departmentId department's id
      * @return list of employees
      */
-    List<Employee> getEmployeesByDepartment(Integer departmentId);
+    Collection<Employee> getEmployeesByDepartment(Integer departmentId);
 }

@@ -5,6 +5,8 @@ import com.epam.brest.course.model.Department;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collection;
+
 /**
  * Interaction Service and DAO
  */
@@ -44,5 +46,13 @@ public class DepartmentServiceImpl implements DepartmentService {
         Department department = departmentDao.getDepartmentById(departmentId);
         department.setDescription(description);
         departmentDao.updateDepartment(department);
+    }
+
+    @Override
+    public Collection<Department> getDepartment() {
+
+        LOGGER.debug("getDepartment()");
+
+        return departmentDao.getDepartment();
     }
 }

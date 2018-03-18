@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class EmployeeDaoImplTest {
 
-    public static final String TEST_NAME = "Test name";
+    private static final String TEST_NAME = "Test name";
 
     @Autowired
     EmployeeDao employeeDao;
@@ -34,7 +35,7 @@ public class EmployeeDaoImplTest {
      */
     @Test
     public void getEmployeesTest() {
-        List<Employee> employeeList = employeeDao.getEmployee();
+        Collection<Employee> employeeList = employeeDao.getEmployee();
         Assert.assertFalse(employeeList.isEmpty());
     }
 
@@ -60,7 +61,7 @@ public class EmployeeDaoImplTest {
      */
     @Test
     public void addEmployeeTest() {
-        List<Employee> employees = employeeDao.getEmployee();
+        Collection<Employee> employees = employeeDao.getEmployee();
         int sizeBefore = employees.size();
         Employee employee = new Employee(TEST_NAME, 100, 1);
 
@@ -112,7 +113,7 @@ public class EmployeeDaoImplTest {
                 new Employee(TEST_NAME, 500, 1);
         employee = employeeDao.addEmployee(employee);
 
-        List<Employee> employees = employeeDao.getEmployee();
+        Collection<Employee> employees = employeeDao.getEmployee();
         int sizeBefore = employees.size();
         employeeDao.deleteEmployeeById(employee.getEmployeeId());
         Assert.assertTrue((sizeBefore - 1) == employeeDao.getEmployee().size());
@@ -130,7 +131,7 @@ public class EmployeeDaoImplTest {
         employeeDao.addEmployee(employee);
         employee = new Employee(TEST_NAME + TEST_NAME, 200, 1);
         employeeDao.addEmployee(employee);
-        List<Employee> department = employeeDao.getEmployeesByDepartment(1);
+        Collection<Employee> department = employeeDao.getEmployeesByDepartment(1);
         Assert.assertTrue(department.size() == 3);
     }
 }

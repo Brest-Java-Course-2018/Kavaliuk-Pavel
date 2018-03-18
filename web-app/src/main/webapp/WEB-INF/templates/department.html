@@ -89,11 +89,12 @@
         <form class="p-0 p-3">
             <div class="form-group">
                 <label for="deptNameInput1">Department Name</label>
-                <input type="email"
+                <input type="text"
                        class="form-control"
                        id="deptNameInput1"
                        placeholder="CEO"
-                       value="CEO">
+                       value="CEO"
+                       th:value="${department.departmentName}">
             </div>
 
             <div class="form-group">
@@ -103,7 +104,8 @@
                        class="form-control"
                        id="deptDescrInput1"
                        placeholder="CEO department"
-                       value="CEO Department">
+                       value="CEO Department"
+                th:value="${department.description}">
             </div>
         </form>
     </div>
