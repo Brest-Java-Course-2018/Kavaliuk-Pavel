@@ -50,6 +50,9 @@ public class DepartmentDaoImpl implements DepartmentDao {
     @Value("${department.getAverageSalary}")
     private String departmentAvgSalary;
 
+    @Value("${employees.deleteDepartment}")
+    private String employeesDeleteDepartment;
+
 
 
     /**
@@ -163,6 +166,9 @@ public class DepartmentDaoImpl implements DepartmentDao {
     public void deleteDepartmentById(Integer departmentId) {
 
         LOGGER.debug("deleteDepartmentById({})", departmentId);
+
+        namedParameterJdbcTemplate.getJdbcOperations()
+                .update(employeesDeleteDepartment, departmentId);
 
         namedParameterJdbcTemplate.getJdbcOperations()
                 .update(departmentDelete, departmentId);

@@ -96,7 +96,7 @@ public class DepartmentController {
      * @param department instance for adding
      * @return view
      */
-    @PostMapping(value = "/department/")
+    @PostMapping(value = "/department/{id}")
     public String updateDepartment(Department department,
                                    BindingResult result) {
 
