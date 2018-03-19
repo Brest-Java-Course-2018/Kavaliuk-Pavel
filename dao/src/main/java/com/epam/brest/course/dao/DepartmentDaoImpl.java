@@ -1,5 +1,6 @@
 package com.epam.brest.course.dao;
 
+import com.epam.brest.course.dto.DepartmentDTO;
 import com.epam.brest.course.model.Department;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,6 +26,9 @@ public class DepartmentDaoImpl implements DepartmentDao {
     private static final String DEPARTMENT_NAME = "departmentName";
     private static final String DESCRIPTION = "description";
 
+    public static final String AVG_SALARY = "avgSalary";
+
+
     @Value("${department.select}")
     private String departmentSelect;
 
@@ -42,9 +46,9 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
     @Value("${department.delete}")
     private String departmentDelete;
-//
-//    @Value("${department.avgSalary}")
-//    private String departmentAvgSalary;
+
+    @Value("${department.getAverageSalary}")
+    private String departmentAvgSalary;
 
 
 
@@ -164,6 +168,16 @@ public class DepartmentDaoImpl implements DepartmentDao {
                 .update(departmentDelete, departmentId);
     }
 
+    @Override
+    public Collection<DepartmentDTO> getDepartmentDTOs() {
+        LOGGER.debug("getDepartmentDTOs()");
+        Collection<DepartmentDTO> list =
+                namedParameterJdbcTemplate.getJdbcOperations()
+                        .query(departmentAvgSalary,
+                                new DepartmentDTORowMapper());
+        return list;
+    }
+
     /**
      * Row mapper
      */
@@ -184,7 +198,18 @@ public class DepartmentDaoImpl implements DepartmentDao {
             department.setDepartmentName(resultSet.getString(DEPARTMENT_NAME));
             department.setDescription(resultSet.getString(DESCRIPTION));
             return department;
+        }
+    }
 
+    private class DepartmentDTORowMapper implements RowMapper<DepartmentDTO> {
+
+        @Override
+        public DepartmentDTO mapRow(ResultSet resultSet, int i) throws SQLException {
+            DepartmentDTO dto = new DepartmentDTO();
+            dto.setDepartmentId(resultSet.getInt(DEPARTMENT_ID));
+            dto.setDepartmentName(resultSet.getString(DEPARTMENT_NAME));
+            dto.setAvgSalary(resultSet.getInt(AVG_SALARY));
+            return dto;
         }
     }
 }

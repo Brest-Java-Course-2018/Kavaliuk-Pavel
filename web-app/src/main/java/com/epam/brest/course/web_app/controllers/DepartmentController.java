@@ -1,5 +1,6 @@
 package com.epam.brest.course.web_app.controllers;
 
+import com.epam.brest.course.dto.DepartmentDTO;
 import com.epam.brest.course.model.Department;
 import com.epam.brest.course.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Collection;
-import java.util.Collections;
 
 /**
  *Controller of Department
@@ -26,7 +26,7 @@ public class DepartmentController {
      */
     @GetMapping(value = "departments")
     public String getDepartments(Model model) {
-        Collection<Department> departments = departmentService.getDepartment();
+        Collection<DepartmentDTO> departments = departmentService.getDepartmentDTOs();
                 //Collections.emptyList();
 
         model.addAttribute("departments", departments);

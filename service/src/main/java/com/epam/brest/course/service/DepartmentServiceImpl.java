@@ -1,6 +1,7 @@
 package com.epam.brest.course.service;
 
 import com.epam.brest.course.dao.DepartmentDao;
+import com.epam.brest.course.dto.DepartmentDTO;
 import com.epam.brest.course.model.Department;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -54,5 +55,11 @@ public class DepartmentServiceImpl implements DepartmentService {
         LOGGER.debug("getDepartment()");
 
         return departmentDao.getDepartment();
+    }
+
+    @Override
+    public Collection<DepartmentDTO> getDepartmentDTOs() {
+        LOGGER.debug("getDepartmentDTOs()");
+        return departmentDao.getDepartmentDTOs();
     }
 }

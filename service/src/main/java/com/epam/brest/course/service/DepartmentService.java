@@ -1,5 +1,6 @@
 package com.epam.brest.course.service;
 
+import com.epam.brest.course.dto.DepartmentDTO;
 import com.epam.brest.course.model.Department;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +32,10 @@ public interface DepartmentService {
      */
     Collection<Department> getDepartment();
 
+    /**
+     * Gets department's DTO
+     * @return collection with params
+     */
+    Collection<DepartmentDTO> getDepartmentDTOs();
 
 }
