@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 /**
@@ -57,18 +58,36 @@ public class DepartmentController {
     }
 
     /**
-     * If exist /department in address
-     * @param model model of department
-     * @return view
+     * Add
+     * @param department department's to add
+     * @param result report about errors
+     * @return departments if OK or
+     * department is something wrong
+     */
+    @PostMapping(value = "/department")
+    public String addDepartment(@Valid Department department,
+                                   BindingResult result) {
+
+        LOGGER.debug("addDepartment({}, {})", department, result);
+        if (result.hasErrors()) {
+            return "department";
+        } else {
+            this.departmentService.addDepartment(department);
+            return "redirect:/departments";
+        }
+    }
+
+    /**
+     *
+     * @param model m
+     * @return k
      */
     @GetMapping(value = "/department")
-    public String addDepartment(Model model) {
-
+    public final String gotoAddDepartmentPage(Model model) {
+        LOGGER.debug("addDepartment({})", model);
         Department department = new Department();
-
-        model.addAttribute("department", department);
         model.addAttribute("isNew", true);
-
+        model.addAttribute("department", department);
         return "department";
     }
 
@@ -77,27 +96,8 @@ public class DepartmentController {
      * @param department instance for adding
      * @return view
      */
-    @PostMapping(value = "/department")
-    public String addDepartment(Department department,
-                                BindingResult result) {
-
-        if(result.hasErrors()){
-            return "/department";
-        }
-        else {
-            this.departmentService.addDepartment(department);
-            return "redirect:/departments";
-        }
-    }
-
-
-    /**
-     * If exist /department in address
-     * @param department instance for adding
-     * @return view
-     */
     @PostMapping(value = "/department/{id}")
-    public String updateDepartment(Department department,
+    public String updateDepartment(@Valid Department department,
                                    BindingResult result) {
 
         LOGGER.debug("updateDepartment({}, {})", department, result);

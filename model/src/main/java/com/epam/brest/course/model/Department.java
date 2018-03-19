@@ -1,5 +1,8 @@
 package com.epam.brest.course.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * POJO Department for model.
  */
@@ -9,13 +12,15 @@ public class Department {
     /**
      * This is department's id
      */
+    //@NotNull
     private Integer departmentId;
     /**
      *
      * This is department's name
      */
-//    @NotEmpty
-//    @Size(min = 2, max = 50)
+
+    @NotNull
+    @Size(min = 2, max = 50)
     private String departmentName;
     /**
      *
