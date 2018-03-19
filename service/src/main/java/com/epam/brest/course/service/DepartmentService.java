@@ -38,4 +38,21 @@ public interface DepartmentService {
      */
     Collection<DepartmentDTO> getDepartmentDTOs();
 
+    void deleteDepartmentById(Integer id);
+
+    /**
+     * Adds write into table
+     * @param department instance of department,
+     * which will be added
+     * @return instance of added department
+     */
+    Department addDepartment(Department department);
+
+    /**
+     * Update department.
+     *
+     * @param department department
+     */
+    void updateDepartment(Department department);
+
 }

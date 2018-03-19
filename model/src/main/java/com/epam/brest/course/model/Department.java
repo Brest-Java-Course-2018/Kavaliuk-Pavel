@@ -5,6 +5,7 @@ package com.epam.brest.course.model;
  */
 
 public class Department {
+
     /**
      * This is department's id
      */
@@ -13,6 +14,8 @@ public class Department {
      *
      * This is department's name
      */
+//    @NotEmpty
+//    @Size(min = 2, max = 50)
     private String departmentName;
     /**
      *
