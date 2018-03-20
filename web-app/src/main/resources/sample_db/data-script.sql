@@ -12,5 +12,5 @@ INSERT INTO department (departmentId, departmentName, description)
 VALUES (6, 'People management', 'People management');
 
 
-INSERT INTO employees (employeeName, salary, departmentFatherId)
-VALUES ('Ivan Ivanov', 300, 1);
+INSERT INTO employees (employeeId, employeeName, salary, departmentFatherId, employeeEmail)
+VALUES (1, 'Ivan Ivanov', 300, 1, 'sample');

@@ -26,7 +26,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     private static final String DEPARTMENT_NAME = "departmentName";
     private static final String DESCRIPTION = "description";
 
-    public static final String AVG_SALARY = "avgSalary";
+    private static final String AVG_SALARY = "avgSalary";
 
 
     @Value("${department.select}")

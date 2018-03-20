@@ -39,7 +39,8 @@
                href="departments.html"
                th:href="@{/department}">Departments</a>
             <a class="nav-item nav-link active"
-               href="#">Employees <span class="sr-only">(current)</span></a>
+               href="employees.html"
+               th:href="@{/employees}">Employees <span class="sr-only">(current)</span></a>
 
         </div>
     </div>
@@ -52,7 +53,6 @@
            th:href="@{/employees}">
             <button class=" btn btn-sm btn-light">
                 <i class="fa fa-arrow-left">
-
                 </i>
             </button>
         </a>
@@ -110,6 +110,16 @@
                                       id="emplNameInput"
                                       placeholder="Employee Name"
                                       value="Ivan Ivanov">
+                           </div>
+
+                           <div class="form-group">
+                               <label class="form-control-label"
+                                      for="emplEmailInput">Employee Name</label>
+                               <input type="text"
+                                      class="form-control"
+                                      id="emplEmailInput"
+                                      placeholder="Employee Email"
+                                      value="some@email.com">
                            </div>
                        </form>
                    </div>

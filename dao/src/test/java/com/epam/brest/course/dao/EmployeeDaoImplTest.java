@@ -62,7 +62,7 @@ public class EmployeeDaoImplTest {
     public void addEmployeeTest() {
         Collection<Employee> employees = employeeDao.getEmployee();
         int sizeBefore = employees.size();
-        Employee employee = new Employee(TEST_NAME, 100, 1);
+        Employee employee = new Employee(TEST_NAME, 100, 1, TEST_NAME);
 
         Employee newEmployee = employeeDao.addEmployee(employee);
         Assert.assertNotNull(newEmployee);
@@ -80,7 +80,7 @@ public class EmployeeDaoImplTest {
      */
     @Test
     public void updateEmployeeTest() {
-        Employee employee = new Employee(TEST_NAME, 500, 1);
+        Employee employee = new Employee(TEST_NAME, 500, 1, TEST_NAME);
 
         Employee newEmployee = employeeDao.addEmployee(employee);
 
@@ -109,7 +109,7 @@ public class EmployeeDaoImplTest {
     @Test
     public void deleteEmployeeTest() {
         Employee employee =
-                new Employee(TEST_NAME, 500, 1);
+                new Employee(TEST_NAME, 500, 1, TEST_NAME);
         employee = employeeDao.addEmployee(employee);
 
         Collection<Employee> employees = employeeDao.getEmployee();
@@ -126,9 +126,9 @@ public class EmployeeDaoImplTest {
     @Test
     public void getEmployeesByDepartmentTest(){
 
-        Employee employee = new Employee(TEST_NAME, 200, 1);
+        Employee employee = new Employee(TEST_NAME, 200, 1, TEST_NAME);
         employeeDao.addEmployee(employee);
-        employee = new Employee(TEST_NAME + TEST_NAME, 200, 1);
+        employee = new Employee(TEST_NAME + TEST_NAME, 200, 1, TEST_NAME);
         employeeDao.addEmployee(employee);
         Collection<Employee> department = employeeDao.getEmployeesByDepartment(1);
         Assert.assertTrue(department.size() == 3);

@@ -12,6 +12,7 @@ CREATE TABLE employees (
   employeeName       VARCHAR(255) NOT NULL,
   salary             INT          NOT NULL,
   departmentFatherId INT          NOT NULL,
+  employeeEmail      VARCHAR(255) NULL,
   PRIMARY KEY (employeeId),
   FOREIGN KEY (departmentFatherId) REFERENCES department (departmentId)
 );

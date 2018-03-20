@@ -28,13 +28,22 @@
         <constructor-arg name="dataSource" ref="dataSource"/>
     </bean>
 
+    <bean id="departmentService"
+          class="com.epam.brest.course.service.DepartmentServiceImpl">
+        <constructor-arg ref="departmentDao"/>
+    </bean>
+
     <bean id="departmentDao" class="com.epam.brest.course.dao.DepartmentDaoImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
-    <bean id="departmentService"
-          class="com.epam.brest.course.service.DepartmentServiceImpl">
-        <constructor-arg ref="departmentDao"/>
+    <bean id="employeeService"
+          class="com.epam.brest.course.service.EmployeeServiceImpl">
+        <constructor-arg ref="employeeDao"/>
+    </bean>
+
+    <bean id="employeeDao" class="com.epam.brest.course.dao.EmployeeDaoImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
     <!-- Thymeleaf Template Resolver -->

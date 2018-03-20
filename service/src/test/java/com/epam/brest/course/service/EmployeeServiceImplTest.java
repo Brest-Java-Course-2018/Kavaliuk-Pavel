@@ -34,10 +34,10 @@ public class EmployeeServiceImplTest {
     @Test
     public void getAllEmployeesTest(){
 
-        Employee employee = new Employee(TEST_NAME, SALARY, PARENT_FATHER_ID);
+        Employee employee = new Employee(TEST_NAME, SALARY, PARENT_FATHER_ID, TEST_NAME);
         employeeService.addEmployee(employee);
         employee = new Employee(TEST_NAME + TEST_NAME, SALARY + SALARY,
-                PARENT_FATHER_ID);
+                PARENT_FATHER_ID, TEST_NAME);
         employeeService.addEmployee(employee);
         Assert.assertNotNull(employeeService.getAllEmployees());
         Assert.assertTrue((((Integer) employeeService.getAllEmployees().size()).equals(3)));
@@ -51,10 +51,10 @@ public class EmployeeServiceImplTest {
     public void addEmployeeTest(){
 
         Integer counterOfEmployeesBeforeAdding = employeeService.getAllEmployees().size();
-        Employee employee = new Employee(TEST_NAME, SALARY, PARENT_FATHER_ID);
+        Employee employee = new Employee(TEST_NAME, SALARY, PARENT_FATHER_ID, TEST_NAME);
         employeeService.addEmployee(employee);
         employee = new Employee(TEST_NAME + TEST_NAME, SALARY + SALARY,
-                PARENT_FATHER_ID);
+                PARENT_FATHER_ID, TEST_NAME);
         employeeService.addEmployee(employee);
         Assert.assertNotNull(employeeService.getAllEmployees());
         Assert.assertFalse(counterOfEmployeesBeforeAdding.equals(employeeService.

@@ -9,17 +9,20 @@ import org.junit.Test;
  */
 public class EmployeeTest {
     /**
-     * default name
+     * Constants
      */
     private static final String GENA = "Gena";
     private static final int EMPLOYEE_ID = 2;
     private static final int SALARY = 200;
-    private static final String TEST_TOSTRING = "Employee{"
-            + "employeeId=2"
-            + ", employeeName='Gena" + '\''
-            + ", salary=200"
-            + ", departmentFatherId=2"
-            + '}';
+    private static final String EMAIL = "voorhis365@mail.ru";
+    private static final String TEST_TOSTRING = "Employee{" +
+            "employeeId=2" +
+            ", employeeName='Gena" + '\'' +
+            ", salary=200" +
+            ", departmentFatherId=2" +
+            ", email='voorhis365@mail.ru'" +
+            '}';
+
 
     /**
      * Creates employee with defined name and than compares this name
@@ -38,7 +41,7 @@ public class EmployeeTest {
      * than check it
      */
     @Test
-    public void getEmployeeId(){
+    public void getEmployeeId() {
 
         Employee employee = new Employee();
         employee.setEmployeeId(EMPLOYEE_ID);
@@ -50,7 +53,7 @@ public class EmployeeTest {
      * than check it
      */
     @Test
-    public void getEmployeeSalaryTest(){
+    public void getEmployeeSalaryTest() {
 
         Employee employee = new Employee();
         employee.setSalary(SALARY);
@@ -62,7 +65,7 @@ public class EmployeeTest {
      * than check it
      */
     @Test
-    public void getDepartmentFatheId(){
+    public void getDepartmentFatheId() {
 
         Employee employee = new Employee();
         employee.setDepartmentFatherId(EMPLOYEE_ID);
@@ -75,13 +78,14 @@ public class EmployeeTest {
      * than check it
      */
     @Test
-    public void toStringTest(){
+    public void toStringTest() {
 
         Employee employee = new Employee();
         employee.setEmployeeId(EMPLOYEE_ID);
         employee.setEmployeeName(GENA);
         employee.setSalary(SALARY);
         employee.setDepartmentFatherId(EMPLOYEE_ID);
+        employee.setEmail(EMAIL);
         Assert.assertTrue(employee.toString().equals(TEST_TOSTRING));
     }
 
@@ -90,12 +94,19 @@ public class EmployeeTest {
      * than check it
      */
     @Test
-    public void constructirWithParamsTest(){
+    public void constructorWithParamsTest() {
 
-        Employee employee = new Employee(GENA, SALARY, EMPLOYEE_ID);
+        Employee employee = new Employee(GENA, SALARY, EMPLOYEE_ID, EMAIL);
         Assert.assertTrue(employee.getEmployeeName().equals(GENA));
         Assert.assertTrue(employee.getSalary().equals(SALARY));
         Assert.assertTrue(employee.getDepartmentFatherId()
                 .equals(EMPLOYEE_ID));
+    }
+
+    @Test
+    public void getEmailTest() {
+        Employee employee = new Employee();
+        employee.setEmail(EMAIL);
+        Assert.assertTrue(employee.getEmail().equals(EMAIL));
     }
 }

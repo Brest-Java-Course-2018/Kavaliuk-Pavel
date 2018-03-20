@@ -53,11 +53,13 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return list with employees
      */
     @Override
-    public Collection<Employee> getEmployeesByDepartment(Integer departmentId) {
+    public Collection<Employee> getEmployeesByDepartment
+    (Integer departmentId) {
 
         LOGGER.debug("getEmployeeByDepartment({})", departmentId);
 
-        Collection<Employee> employees = employeeDao.getEmployeesByDepartment(departmentId);
+        Collection<Employee> employees = employeeDao
+                .getEmployeesByDepartment(departmentId);
         return employees;
     }
 
@@ -68,9 +70,10 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public Employee addEmployee(Employee employee) {
-        LOGGER.debug("New employee: name {}, salary {}, department{}",
+        LOGGER.debug("New employee: name {}, salary {}, department{},"
+                        + "email{}",
                 employee.getEmployeeName(), employee.getSalary(),
-                employee.getDepartmentFatherId());
+                employee.getDepartmentFatherId(), employee.getEmail());
 
         return employeeDao.addEmployee(employee);
     }
@@ -82,9 +85,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void updateEmployee(Employee employee) {
 
-        LOGGER.debug("New parameters: name {}, salary {}, department: {}",
+        LOGGER.debug("New employee: name {}, salary {}, department{},"
+                        + "email{}",
                 employee.getEmployeeName(), employee.getSalary(),
-                employee.getDepartmentFatherId());
+                employee.getDepartmentFatherId(), employee.getEmail());
         employeeDao.updateEmployee(employee);
     }
 

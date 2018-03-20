@@ -54,10 +54,10 @@
 
         <ul class="navbar-nav float-right">
             <li class="nav-item">
-                <a href="#" class="btn btn-light"
+                <a href="employee.html" class="btn btn-light"
                    data-toggle="tooltip"
                    data-placement="bottom"
-                   title="Add department">
+                   title="Add employee">
                     <i class="fa fa-plus">
                         <span class="d-none d-sm-inline">
                             Add
@@ -69,78 +69,83 @@
     </nav>
 </header>
 
-<section id="departments">
+<section id="employees">
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <table class="table table-striped">
-                    <thead class="thead-inverse">
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Avg salary</th>
-                        <th></th>
-                    </tr>
-                    </thead>
+                <div class="card" th:if="not ${employees.isEmpty()}">
+                    <table class="table table-striped">
+                        <thead class="thead-inverse">
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Avg salary</th>
+                            <th></th>
+                        </tr>
+                        </thead>
 
-                    <tbody>
-                    <tr>
-                        <td>Ivan Ivanov</td>
-                        <td>ivan.ivanov@test.com</td>
-                        <td>1000</td>
-                        <td class="text">
-                            <a href="employee.html"
-                               th:href="@{/employee}"
-                               class="btn-sm btn-outline-secondary"
-                               data-toggle="tooltip"
-                               data-placement="top"
-                               title="Edit employee">
-                                <i class="fa fa-pencil">
-                                    <span class="d-none d-md-none d-lg-inline">Edit</span>
-                                </i>
-                            </a>
-                            <a href="#"
-                               class="btn-sm btn-outline-secondary"
-                               data-toggle="modal"
-                               data-placement="bottom"
-                               data-target="#deleteModalButton"
-                               title="Delete">
-                                <i class="fa fa-remove">
-                                    <span class="d-none d-md-none d-lg-inline">Remove</span>
-                                </i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Alexander Petrov</td>
-                        <td>alex.petrov@test.com</td>
-                        <td>1100</td>
-                        <td class="text">
-                            <a href="employee.html"
-                               th:href="@{/employee}"
-                               class="btn-sm btn-outline-secondary"
-                               data-toggle="tooltip"
-                               data-placement="top"
-                               title="Edit employee">
-                                <i class="fa fa-pencil">
-                                    <span class="d-none d-md-none d-lg-inline">Edit</span>
-                                </i>
-                            </a>
-                            <a href="#"
-                               class="btn-sm btn-outline-secondary"
-                               data-toggle="modal"
-                               data-placement="bottom"
-                               data-target="#deleteModalButton"
-                               title="Delete">
-                                <i class="fa fa-remove">
-                                    <span class="d-none d-md-none d-lg-inline">Remove</span>
-                                </i>
-                            </a>
-                        </td>
-                    </tr>
-                    </tbody>
+                        <tbody>
+                        <tr th:each="employee : ${employees}">
+                            <td th:text="${employee.employeeName}">Ivan Ivanov</td>
+                            <td th:text="${employee.email}">ivan.ivanov@test.com</td>
+                            <td th:text="${employee.salary}">1000</td>
+                            <td class="text">
+                                <a href="employee.html"
+                                   th:href="@{/employee}"
+                                   class="btn-sm btn-outline-secondary"
+                                   data-toggle="tooltip"
+                                   data-placement="top"
+                                   title="Edit employee">
+                                    <i class="fa fa-pencil">
+                                        <span class="d-none d-md-none d-lg-inline">Edit</span>
+                                    </i>
+                                </a>
+                                <a href="#"
+                                   class="btn-sm btn-outline-secondary"
+                                   data-toggle="modal"
+                                   data-placement="bottom"
+                                   data-target="#deleteModalButton"
+                                   title="Delete">
+                                    <i class="fa fa-remove">
+                                        <span class="d-none d-md-none d-lg-inline">Remove</span>
+                                    </i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr th:remove="all">
+                            <td>Alexander Petrov</td>
+                            <td>alex.petrov@test.com</td>
+                            <td>1100</td>
+                            <td class="text">
+                                <a href="employee.html"
+                                   th:href="@{/employee}"
+                                   class="btn-sm btn-outline-secondary"
+                                   data-toggle="tooltip"
+                                   data-placement="top"
+                                   title="Edit employee">
+                                    <i class="fa fa-pencil">
+                                        <span class="d-none d-md-none d-lg-inline">Edit</span>
+                                    </i>
+                                </a>
+                                <a href="#"
+                                   class="btn-sm btn-outline-secondary"
+                                   data-toggle="modal"
+                                   data-placement="bottom"
+                                   data-target="#deleteModalButton"
+                                   title="Delete">
+                                    <i class="fa fa-remove">
+                                        <span class="d-none d-md-none d-lg-inline">Remove</span>
+                                    </i>
+                                </a>
+                            </td>
+                        </tr>
 
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card" th:if="${employees.isEmpty()}">
+                    <h2>Nothing to show</h2>
+                </div>
             </div>
         </div>
     </div>

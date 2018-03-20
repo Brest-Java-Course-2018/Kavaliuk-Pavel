@@ -25,6 +25,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     private static final String EMPLOYEE_NAME = "employeeName";
     private static final String SALARY = "salary";
     private static final String DEPARTMENT_FATHER_ID = "departmentFatherId";
+    private static final String EMAIL = "employeeEmail";
 
     @Value("${employees.getAllEmployees}")
     private String getAllEmployees;
@@ -56,6 +57,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+    public EmployeeDaoImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
+
     /**
      * This method get all notes from table.
      *
@@ -70,7 +75,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 new EmployeeRowMapper());
         LOGGER.debug("count = {}", employees.size());
         return employees;
-
     }
 
     /**
@@ -117,6 +121,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             namedParameter.addValue("salary", employee.getSalary());
             namedParameter.addValue("departmentFatherId", employee
                     .getDepartmentFatherId());
+            namedParameter.addValue("employeeEmail", employee.getEmail());
 
             KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
             namedParameterJdbcTemplate.update(insertEmployee,
@@ -197,6 +202,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             employee.setEmployeeName(resultSet.getString(EMPLOYEE_NAME));
             employee.setSalary(resultSet.getInt(SALARY));
             employee.setDepartmentFatherId(resultSet.getInt(DEPARTMENT_FATHER_ID));
+            employee.setEmail(resultSet.getString(EMAIL));
             return employee;
 
         }
