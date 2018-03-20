@@ -1,5 +1,9 @@
 package com.epam.brest.course.model;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * POJO Employee for model.
  */
@@ -8,18 +12,24 @@ public class Employee {
     /**
      * This is employee's id
      */
+    @Min(0)
     private Integer employeeId;
     /**
      * This is employee's name
      */
+    @NotNull
+    @Size(min = 2, max = 50)
     private String employeeName;
     /**
      * This is employee's salary
      */
+    @NotNull
+    @Min(0)
     private Integer salary;
     /**
      * This is id of department which employee belongs
      */
+    @Min(0)
     private Integer departmentFatherId;
 
     /**

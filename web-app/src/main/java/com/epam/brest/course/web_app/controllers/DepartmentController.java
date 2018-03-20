@@ -35,7 +35,6 @@ public class DepartmentController {
     @GetMapping(value = "departments")
     public String getDepartments(Model model) {
         Collection<DepartmentDTO> departments = departmentService.getDepartmentDTOs();
-                //Collections.emptyList();
 
         model.addAttribute("departments", departments);
         return "departments";

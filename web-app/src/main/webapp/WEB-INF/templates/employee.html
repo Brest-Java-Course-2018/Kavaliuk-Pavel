@@ -56,30 +56,25 @@
                 </i>
             </button>
         </a>
-        <a href="employees.html"
-           th:href="@{/employees}"
-           class="navbar-brand text-uppercase mr-auto text-dark">
-
-            Edit Employee
-
-        </a>
-        <ul class="navbar-nav float-right">
+        <span class="navbar-brand text-uppercase mr-auto text-dark"
+              th:text="${isNew} ? 'New employee' : 'Edit employee'">Edit employee</span>
+        <ul class="navbar-nav">
             <li class="nav-item">
-                <a href="#" class="btn btn-light"
+                <a href="employees.html"
+                   th:href="@{/employees}"
+
+                   th:onclick="@{document.forms['employeeForm'].submit(); return false;}"
+                   class="btn btn-light"
+                   title="Save department"
                    data-toggle="tooltip"
-                   data-placement="bottom"
-                   title="Save employee">
-                    <i class="fa fa-save">
-                        <span class="d-none d-sm-inline">
-                            Save
-                        </span>
-                    </i>
+                   data-placement="bottom">
+                    <i class="fa fa-save"></i>
+                    <span class="d-none d-sm-inline">Save</span>
                 </a>
             </li>
         </ul>
     </nav>
 </header>
-
 
 <section id="employee">
     <div class="container-fluid">
@@ -87,39 +82,61 @@
            <div class="col">
                <div class="card">
                    <div class="card-body">
-                       <form>
+                       <form id="employeeForm"
+                             th:object="${employee}"
+                             action="employees.html"
+                             th:action="@{${#httpServletRequest.servletPath}}"
+                             th:method="@{post}">
+
+                           <input id="field_employeeId"
+                                  name="field_employeeId"
+                                  type="hidden"
+                                  th:field="*{employeeId}"/>
+
+
                            <div class="form-group">
                                <label class="form-control-label"
                                        for="deptNameInput">Department</label>
                                <select class="form-control"
-                                       id="deptNameInput">
-                                   <option value="1">CEO</option>
-                                   <option value="2">Accounting</option>
-                                   <option value="3">Development</option>
-                                   <option value="4">Java</option>
-                                   <option value="5">Testing</option>
-                                   <option value="6">People managing</option>
+                                       id="deptNameInput"
+                                       th:field="*{departmentFatherId}">
+                                   <option th:each="department : ${listOfDepartments}"
+                                   th:value="${department.departmentId}"
+                                   th:text="${department.departmentName}">1</option>
                                </select>
                            </div>
 
                            <div class="form-group">
                                <label class="form-control-label"
-                                       for="emplNameInput">Employee Name</label>
+                                       for="emplNameInput">Employee's Name</label>
                                <input type="text"
                                       class="form-control"
                                       id="emplNameInput"
                                       placeholder="Employee Name"
-                                      value="Ivan Ivanov">
+                                      value="Ivan Ivanov"
+                                      th:field="*{employeeName}">
                            </div>
 
                            <div class="form-group">
                                <label class="form-control-label"
-                                      for="emplEmailInput">Employee Name</label>
+                                      for="emplEmailInput">Employee's Email</label>
                                <input type="text"
                                       class="form-control"
                                       id="emplEmailInput"
                                       placeholder="Employee Email"
-                                      value="some@email.com">
+                                      value="some@email.com"
+                                      th:field="*{email}">
+                           </div>
+
+                           <div class="form-group">
+                               <label class="form-control-label"
+                                      for="emplSalaryInput">Employee's Salary</label>
+                               <input type="text"
+                                      class="form-control"
+                                      id="emplSalaryInput"
+                                      placeholder="Employee Salary"
+                                      value="200"
+                                      th:field="*{salary}">
                            </div>
                        </form>
                    </div>
