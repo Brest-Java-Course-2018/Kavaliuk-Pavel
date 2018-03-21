@@ -1,5 +1,6 @@
 package com.epam.brest.course.service;
 
+import com.epam.brest.course.dto.DepartmentDTO;
 import com.epam.brest.course.model.Department;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,6 +12,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collection;
 
 /**
  * Test of DepartmentServiceImpl
@@ -44,5 +47,32 @@ public class DepartmentServiceImplTest {
 
         Department department = departmentService.getDepartmentById(ID);
         Assert.assertEquals(DESC, department.getDescription());
+    }
+
+    @Test
+    public void getDepartmentTest(){
+        LOGGER.debug("getDepartmentTest()");
+        Collection<Department> departmentDTOS = departmentService
+                .getDepartment();
+        Assert.assertTrue(((Integer) departmentDTOS.size()).equals(1));
+    }
+
+    @Test
+    public void getDepartmentDTOsTest(){
+        LOGGER.debug("getDepartmentDTOsTest()");
+        Collection<DepartmentDTO> departmentDTOS = departmentService
+                .getDepartmentDTOs();
+        Assert.assertTrue(((Integer) departmentDTOS.size()).equals(1));
+    }
+
+    @Test
+    public void deleteDepartmentById(){
+        LOGGER.debug("deleteDepartmentById()");
+        Collection<Department> departments = departmentService.getDepartment();
+        Integer counter = departments.size();
+        departmentService.deleteDepartmentById(1);
+        Assert.assertTrue(((Integer) departmentService.getDepartment()
+                .size()).equals(counter - 1));
+
     }
 }
