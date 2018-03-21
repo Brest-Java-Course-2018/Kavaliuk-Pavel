@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>BS 4 template</title>
+    <title th:text="#{common.title}">BS 4 template</title>
     <link rel="stylesheet"
           href="../../resources/static/css/font-awesome.min.css"
           th:href="@{/resources/static/css/font-awesome.min.css}"/>
@@ -37,10 +37,12 @@
         <div class="navbar-nav">
             <a class="nav-item nav-link"
                href="departments.html"
-               th:href="@{/departments}">Departments <span class="sr-only">(current)</span></a>
+               th:href="@{/departments}"
+               th:text="#{common.departmentsHeader}">Departments</a>
             <a class="nav-item nav-link active"
                href="employees.html"
-               th:href="@{/employees}">Employees</a>
+               th:href="@{/employees}"
+               th:text="#{common.employeesHeader}">Employees<span class="sr-only">(current)</span></a>
 
         </div>
     </div>
@@ -59,9 +61,8 @@
                    data-placement="bottom"
                    title="Add employee">
                     <i class="fa fa-plus">
-                        <span class="d-none d-sm-inline">
-                            Add
-                        </span>
+                        <span class="d-none d-sm-inline"
+                        th:text="#{common.addButton}">Add</span>
                     </i>
                 </a>
             </li>
@@ -77,9 +78,9 @@
                     <table class="table table-striped">
                         <thead class="thead-inverse">
                         <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Avg salary</th>
+                            <th th:text="#{employees.name}">Name</th>
+                            <th th:text="#{employees.email}">Email</th>
+                            <th th:text="#{employees.salary}">Avg salary</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -97,7 +98,8 @@
                                    data-placement="top"
                                    title="Edit employee">
                                     <i class="fa fa-pencil">
-                                        <span class="d-none d-md-none d-lg-inline">Edit</span>
+                                        <span class="d-none d-md-none d-lg-inline"
+                                        th:text="#{common.editButton}">Edit</span>
                                     </i>
                                 </a>
                                 <span data-toggle="modal"
@@ -107,7 +109,8 @@
                                    title="delete employee"
                                    data-toggle="tooltip"
                                    data-placement="top">
-                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>
+                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline"
+                                    th:text="#{common.deleteButton}">Delete</span></a>
                             </td>
                         </tr>
                         <tr th:remove="all">
@@ -142,7 +145,7 @@
                     </table>
                 </div>
                 <div class="card" th:if="${employees.isEmpty()}">
-                    <h2>Nothing to show</h2>
+                    <h2 th:text="#{common.nothing}">Nothing to show</h2>
                 </div>
             </div>
         </div>
@@ -160,14 +163,13 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                Please confirm delete
-            </div>
+            <div class="modal-body"
+            th:text="#{common.offerToConfirmDeleting}">Please confirm delete</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <a id="deleteUrl"
                    href="#"
-                   class="btn btn-danger">Delete</a>
+                   class="btn btn-danger" th:text="#{common.deleteButton}">Delete</a>
             </div>
         </div>
     </div>

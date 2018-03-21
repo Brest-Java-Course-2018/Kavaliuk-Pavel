@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>BS 4 template</title>
+    <title th:text="#{common.title}">BS 4 template</title>
     <link rel="stylesheet"
           href="../../resources/static/css/font-awesome.min.css"
           th:href="@{/resources/static/css/font-awesome.min.css}"/>
@@ -39,13 +39,12 @@
             <a class="nav-item nav-link active"
                href="departments.html"
                th:href="@{/departments}"
-            >Departments <span
-                    class="sr-only">(current)</span></a>
+               th:text="#{common.departmentsHeader}">Departments <span class="sr-only">(current)</span></a>
+
             <a class="nav-item nav-link"
                href="employees.html"
                th:href="@{/employees}"
-            >Employees</a>
-
+                th:text="#{common.employeesHeader}">Employees</a>
         </div>
     </div>
 </nav>
@@ -80,7 +79,8 @@
                    data-toggle="tooltip"
                    data-placement="bottom">
                     <i class="fa fa-save"></i>
-                    <span class="d-none d-sm-inline">Save</span>
+                    <span class="d-none d-sm-inline"
+                    th:text="#{common.save}">Save</span>
                 </a>
             </li>
         </ul>
@@ -106,7 +106,8 @@
                                th:field="*{departmentId}"/>
 
                         <div class="form-group">
-                            <label for="field_departmentName">Department Name</label>
+                            <label for="field_departmentName"
+                                   th:text="#{department.departmentName}">Department Name</label>
                             <input type="text"
                                    class="form-control"
                                    id="field_departmentName"
@@ -117,7 +118,8 @@
 
                         <div class="form-group">
                             <label fclass="d-none d-sm-inline"
-                                   for="field_description">Description</label>
+                                   for="field_description"
+                                   th:text="#{department.departmentDiscr}">Description</label>
                             <input type="text"
                                    class="form-control"
                                    id="field_description"
@@ -126,7 +128,6 @@
                                    th:field="*{description}"/>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
