@@ -1,5 +1,7 @@
 package com.epam.brest.course.model;
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -35,6 +37,7 @@ public class Employee {
     /**
      * Employee's email
      */
+    @Email(message = "This is not email.")
     private String email;
 
     /**

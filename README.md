@@ -26,3 +26,4 @@
     $mvn site:stage
   
     check: ``<project>/target/stage/index.html``
+    
