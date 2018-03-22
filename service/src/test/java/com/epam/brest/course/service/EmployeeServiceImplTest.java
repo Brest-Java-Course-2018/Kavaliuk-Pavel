@@ -10,6 +10,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+import java.util.List;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:service-test.xml",
         "classpath:test-db-spring.xml", "classpath:dao.xml"})
@@ -62,12 +65,32 @@ public class EmployeeServiceImplTest {
     }
 
     /**
-     * Delete first element, which exist in default and check isEmpty method
-     *
+     * Delete one element, which exist in default and check collection's size on decrementing
      */
     @Test
     public void deleteEmployeeByIdTest(){
-        employeeService.deleteEmployeeById(1);
-        Assert.assertTrue(employeeService.getAllEmployees().isEmpty());
+        Integer wasCount = employeeService.getAllEmployees().size();
+        employeeService.deleteEmployeeById(PARENT_FATHER_ID);
+        Assert.assertTrue(((Integer) employeeService.getAllEmployees()
+                .size()).equals(wasCount - 1));
+    }
+
+    /**
+     * Gets employee and compares his id with required
+     */
+    @Test
+    public void getEmployeeById(){
+        Employee employee = employeeService.getEmployeeById(PARENT_FATHER_ID);
+        Assert.assertTrue(employee.getEmployeeId().equals(PARENT_FATHER_ID));
+    }
+
+    /**
+     * Gets employees belongs department with some id and compares employee's department id with required.
+     */
+    @Test
+    public void getEmployeesByDepartmentFatherIdTest(){
+        List<Employee> employees = (List<Employee>) employeeService.getEmployeesByDepartment(PARENT_FATHER_ID);
+        Assert.assertFalse(employees.isEmpty());
+        Assert.assertTrue(employees.get(0).getDepartmentFatherId().equals(PARENT_FATHER_ID));
     }
 }
