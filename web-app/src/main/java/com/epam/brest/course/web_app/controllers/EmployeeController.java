@@ -24,6 +24,10 @@ import java.util.List;
 @Controller
 public class EmployeeController {
 
+    private List<DepartmentDTO> departmentDTOs;
+
+    private Collection<Employee> employees;
+
     private static final Logger LOGGER = LogManager.getLogger();
 
     @Autowired
@@ -41,7 +45,7 @@ public class EmployeeController {
     @GetMapping(value = "employees")
     public String getEmployees(Model model) {
         LOGGER.debug("getEmployees()");
-        Collection<Employee> employees = employeeService.getAllEmployees();
+        employees = employeeService.getAllEmployees();
         model.addAttribute("employees", employees);
 
         return "employees";
@@ -56,7 +60,7 @@ public class EmployeeController {
     public String getEmployeeById(@PathVariable Integer id, Model model) {
 
         Employee employee = employeeService.getEmployeeById(id);
-        List<DepartmentDTO> departmentDTOs =
+        departmentDTOs =
                 (List<DepartmentDTO>) departmentService.getDepartmentDTOs();
 
 
@@ -66,6 +70,11 @@ public class EmployeeController {
                     .getDepartmentFatherId()){
                 model.addAttribute("departmentName",departmentDTO
                         .getDepartmentName());
+            }
+        }
+        for(Employee foo : employees){
+            if(foo.getEmployeeId() == id) {
+                employee.setEmail(foo.getEmail());
             }
         }
         model.addAttribute("listOfDepartments", departmentDTOs);
@@ -78,11 +87,14 @@ public class EmployeeController {
     @PostMapping(value = "/employee/{id}")
     public String updateEmployee(@PathVariable Integer id,
                                  @Valid Employee employee,
-                                 BindingResult result){
+                                 BindingResult result, Model model){
+
 
         if(employee.getEmployeeId() == null) employee.setEmployeeId(id);
+
         LOGGER.debug("updateEmployee({}, {})", employee, result);
         if (result.hasErrors()) {
+            model.addAttribute("listOfDepartments", departmentDTOs);
             return "employee";
         } else {
             this.employeeService.updateEmployee(employee);

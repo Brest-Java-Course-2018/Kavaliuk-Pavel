@@ -93,6 +93,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
         Employee employee = namedParameterJdbcTemplate.queryForObject
                 (getEmployeeById, sqlParameterSource, BeanPropertyRowMapper
                         .newInstance(Employee.class));
+//        Employee employee = namedParameterJdbcTemplate.getJdbcOperations()
+//                .query(getEmployeeById, sqlParameterSource, new EmployeeRowMapper()).get(employeeId);
         return employee;
     }
 
