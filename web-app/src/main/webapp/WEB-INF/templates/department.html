@@ -18,11 +18,10 @@
 <body>
 
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark text-light">
+<nav class="p1-2 navbar navbar-expand-sm navbar-dark bg-dark text-light p-0">
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-            aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbarToggleExternalContent">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -59,13 +58,7 @@
                 </i>
             </button>
         </a>
-       <!--<span class="navbar-brand text-uppercase mr-auto text-dark"-->
-             <!--th:text="${isNew} ? 'New department' : 'Edit department'">Edit department</span>-->
-        <!--<a href="departments.html"-->
-           <!--th:href="@{/departments}"-->
-           <!--class="navbar-brand text-uppercase mr-auto text-dark">-->
-            <!--Edit Department-->
-        <!--</a>-->
+
         <span class="navbar-brand text-uppercase mr-auto text-dark"
               th:text="${isNew} ? 'New department' : 'Edit department'">Edit department</span>
         <ul class="navbar-nav">
@@ -80,11 +73,10 @@
                    data-placement="bottom">
                     <i class="fa fa-save"></i>
                     <span class="d-none d-sm-inline"
-                    th:text="#{common.save}">Save</span>
+                    th:text="#{common.saveButton}">Save</span>
                 </a>
             </li>
         </ul>
-
     </nav>
 </header>
 
