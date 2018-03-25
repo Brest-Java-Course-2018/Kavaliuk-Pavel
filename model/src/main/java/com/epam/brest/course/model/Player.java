@@ -14,11 +14,10 @@ public class Player {
 
     private Integer player_team_id;
 
-    public Player(Integer player_id, Integer player_number,
+    public Player(Integer player_number,
                   String player_name, Integer player_age,
                   Integer player_cost, Integer player_team_id) {
 
-        this.player_id = player_id;
         this.player_number = player_number;
         this.player_name = player_name;
         this.player_age = player_age;

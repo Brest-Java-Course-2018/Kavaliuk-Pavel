@@ -23,4 +23,18 @@ public interface PlayerDao {
      * @param playerId required id
      */
     void deletePlayerById(Integer playerId);
+
+//    /**
+//     * Gets player for some name template
+//     * @param namePattern part or whole name
+//     * @return player's instance
+//     */
+//    Collection<Player> getPlayerByName(String namePattern);
+
+
+    /**
+     * Updates player
+     * @param player player to update
+     */
+    void updatePlayer(Player player);
 }

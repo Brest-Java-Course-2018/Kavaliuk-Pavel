@@ -5,8 +5,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
@@ -31,6 +33,15 @@ public class PlayerDaoImpl implements PlayerDao{
 
     @Value("${players.getAllPlayersFromTable}")
     private String getAllPlayersQuery;
+
+    @Value("${players.deletePlayerByIdFromTable}")
+    private String deletePlayerByIdQuery;
+
+    @Value("${players.updatePlayer}")
+    private String updatePlayerQuery;
+
+//    @Value("${players.getPlayerByName}")
+//    private String getPlayerNameQuery;
 
     /**
      * Allows use named parameters instead of "?"-symbol
@@ -88,6 +99,36 @@ public class PlayerDaoImpl implements PlayerDao{
     @Override
     public void deletePlayerById(Integer playerId) {
 
+        LOGGER.debug("deletePlayerById({})", playerId);
+        namedParameterJdbcTemplate.getJdbcOperations().update(deletePlayerByIdQuery, playerId);
+    }
+
+//    /**
+//     * Gets player for some name template
+//     *
+//     * @param namePattern part or whole name
+//     * @return player's instance
+//     */
+//    @Override
+//    public Collection<Player> getPlayerByName(String namePattern) {
+//
+//        LOGGER.debug("getPlayerByName({})", namePattern);
+//        SqlParameterSource namedParameter = new MapSqlParameterSource(PLAYER_NAME, namePattern);
+////        Collection<Player> players = namedParameterJdbcTemplate.queryForObject(getPlayerNameQuery, namedParameter, new PlayerRowMapper());
+//        Collection<Player> players = namedParameterJdbcTemplate.getJdbcOperations(getPlayerNameQuery, new BeanPropertySqlParameterSource(namedParameter), Player.class);
+//        return null;
+//    }
+
+    /**
+     * Updates player
+     * @param player player to update
+     */
+    @Override
+    public void updatePlayer(Player player) {
+
+        LOGGER.debug("updatePlayer({})", player);
+        SqlParameterSource namedParameter = new BeanPropertySqlParameterSource(player);
+        namedParameterJdbcTemplate.update(updatePlayerQuery, namedParameter);
     }
 
     /**

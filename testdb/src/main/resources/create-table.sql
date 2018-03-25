@@ -15,7 +15,18 @@ CREATE TABLE players (
   player_number INT NOT NULL,
   player_age INT NOT NULL,
   player_cost INT NOT NULL,
-  player_team_id INT NOT NULL,
+  player_team_id INT,
   PRIMARY KEY (player_id),
   FOREIGN KEY (player_team_id) REFERENCES teams (team_id)
+);
+
+DROP TABLE IF EXISTS meeting;
+CREATE TABLE meeting (
+
+  meeting_id INT NOT NULL AUTO_INCREMENT,
+  first_team INT NOT NULL,
+  second_team INT NOT NULL,
+  PRIMARY KEY (meeting_id),
+  FOREIGN KEY (first_team) REFERENCES teams (team_id),
+  FOREIGN KEY (second_team) REFERENCES teams (team_id)
 );
