@@ -15,3 +15,9 @@ INSERT INTO players (player_name, player_number, player_age, player_cost, player
 VALUES ('Kavaliuk Pavel', 12, 22, 2500, 2);
 INSERT INTO players (player_name, player_number, player_age, player_cost, player_team_id)
 VALUES ('Volchetskiy Ivan', 7, 20, 2000, 2);
+INSERT INTO players (player_name, player_number, player_age, player_cost, player_team_id)
+VALUES ('Kirill Pavel', 12, 22, 2500, 2);
+INSERT INTO players (player_name, player_number, player_age, player_cost, player_team_id)
+VALUES ('Natasha Pavel', 12, 22, 2500, 2);
+INSERT INTO players (player_name, player_number, player_age, player_cost, player_team_id)
+VALUES ('Gena Pavel', 12, 22, 2500, 2);

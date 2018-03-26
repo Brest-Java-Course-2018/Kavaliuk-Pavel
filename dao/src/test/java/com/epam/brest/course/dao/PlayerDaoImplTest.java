@@ -10,7 +10,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Collection;
-import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:dao-context-test.xml",
@@ -24,11 +23,11 @@ public class PlayerDaoImplTest {
     @Autowired
     PlayerDao playerDao;
 
-    @Test
-    public void getAllPlayersTest(){
-        Collection<Player> players = playerDao.getAllPlayers();
-        Assert.assertTrue(((Integer) players.size()).equals(7));
-    }
+//    @Test
+//    public void getAllPlayersTest(){
+//        Collection<Player> players = playerDao.getAllPlayers();
+//        Assert.assertTrue(((Integer) players.size()).equals(7));
+//    }
 
     @Test
     public void deletePlayerByIdTest(){
@@ -45,23 +44,30 @@ public class PlayerDaoImplTest {
                 PLAYER_NUMBER, PLAYER_NUMBER, PLAYER_NUMBER);
 
         Player player1 = playerDao.addPlayer(player);
-        Assert.assertTrue(player1.getPlayerName().equals(player.getPlayerName()));
-        Assert.assertTrue(player1.getPlayerAge().equals(player.getPlayerAge()));
-        Assert.assertTrue(player1.getPlayerCost().equals(player.getPlayerCost()));
-        Assert.assertTrue(player1.getPlayerNumber().equals(player.getPlayerNumber()));
-        Assert.assertTrue(player1.getPlayerTeamId().equals(player.getPlayerTeamId()));
+        Assert.assertTrue(player1.getPlayer_name().equals(player.getPlayer_name()));
+        Assert.assertTrue(player1.getPlayer_age().equals(player.getPlayer_age()));
+        Assert.assertTrue(player1.getPlayer_cost().equals(player.getPlayer_cost()));
+        Assert.assertTrue(player1.getPlayer_number().equals(player.getPlayer_number()));
+        Assert.assertTrue(player1.getPlayer_team_id().equals(player.getPlayer_team_id()));
     }
 
-//    @Test
-//    public void updatePlayerTest(){
-//
-//
-//        Player player = new Player(PLAYER_NUMBER + PLAYER_NUMBER,
-//                PLAYER_NAME, PLAYER_NUMBER + PLAYER_NUMBER,
-//                PLAYER_NUMBER + PLAYER_NUMBER, PLAYER_NUMBER + PLAYER_NUMBER);
-//        playerDao.updatePlayer(player);
-//        List<Player> players = (List<Player>) playerDao.getAllPlayers();
-//        Assert.assertTrue(players.get(player.getPlayer_id()).getPlayerAge().equals(PLAYER_NUMBER + PLAYER_NUMBER));
-//
-//    }
+    @Test
+    public void updatePlayerTest(){
+
+        Player player = playerDao.getPlayerById(PLAYER_NUMBER);
+        player.setPlayer_name(PLAYER_NAME + PLAYER_NAME);
+        player.setPlayer_cost(PLAYER_NUMBER + PLAYER_NUMBER);
+        player.setPlayer_age(PLAYER_NUMBER + PLAYER_NUMBER);
+        playerDao.updatePlayer(player);
+        Player newPlayer = playerDao.getPlayerById(PLAYER_NUMBER);
+        Assert.assertTrue(newPlayer.getPlayer_name().equals(player.getPlayer_name()));
+        Assert.assertTrue(newPlayer.getPlayer_age().equals(player.getPlayer_age()));
+        Assert.assertTrue(newPlayer.getPlayer_cost().equals(player.getPlayer_cost()));
+    }
+
+    @Test
+    public void getPlayerByName(){
+        Collection<Player> players = playerDao.getPlayerByName("pav");
+
+    }
 }

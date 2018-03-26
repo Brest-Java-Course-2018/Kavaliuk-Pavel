@@ -25,56 +25,106 @@ public class Player {
         this.player_team_id = player_team_id;
     }
 
+
+
     public Player() {
 
     }
 
     public Integer getPlayer_id() {
-
         return player_id;
     }
 
-    public void setPlayerId(Integer player_id) {
+    public void setPlayer_id(Integer player_id) {
         this.player_id = player_id;
     }
 
-    public Integer getPlayerNumber() {
+    public Integer getPlayer_number() {
         return player_number;
     }
 
-    public void setPlayerNumber(Integer player_number) {
+    public void setPlayer_number(Integer player_number) {
         this.player_number = player_number;
     }
 
-    public String getPlayerName() {
+    public String getPlayer_name() {
         return player_name;
     }
 
-    public void setPlayerName(String player_name) {
+    public void setPlayer_name(String player_name) {
         this.player_name = player_name;
     }
 
-    public Integer getPlayerAge() {
+    public Integer getPlayer_age() {
         return player_age;
     }
 
-    public void setPlayerAge(Integer player_age) {
+    public void setPlayer_age(Integer player_age) {
         this.player_age = player_age;
     }
 
-    public Integer getPlayerCost() {
+    public Integer getPlayer_cost() {
         return player_cost;
     }
 
-    public void setPlayerCost(Integer player_cost) {
+    public void setPlayer_cost(Integer player_cost) {
         this.player_cost = player_cost;
     }
 
-    public Integer getPlayerTeamId() {
+    public Integer getPlayer_team_id() {
         return player_team_id;
     }
 
-    public void setPlayerTeamId(Integer player_team_id) {
+    public void setPlayer_team_id(Integer player_team_id) {
         this.player_team_id = player_team_id;
     }
+
+    //    public Integer getPlayer_id() {
+//
+//        return player_id;
+//    }
+//
+//    public void setPlayerId(Integer player_id) {
+//        this.player_id = player_id;
+//    }
+//
+//    public Integer getPlayerNumber() {
+//        return player_number;
+//    }
+//
+//    public void setPlayerNumber(Integer player_number) {
+//        this.player_number = player_number;
+//    }
+//
+//    public String getPlayer_name() {
+//        return player_name;
+//    }
+//
+//    public void setPlayer_name(String player_name) {
+//        this.player_name = player_name;
+//    }
+//
+//    public Integer getPlayerAge() {
+//        return player_age;
+//    }
+//
+//    public void setPlayerAge(Integer player_age) {
+//        this.player_age = player_age;
+//    }
+//
+//    public Integer getPlayerCost() {
+//        return player_cost;
+//    }
+//
+//    public void setPlayerCost(Integer player_cost) {
+//        this.player_cost = player_cost;
+//    }
+//
+//    public Integer getPlayerTeamId() {
+//        return player_team_id;
+//    }
+//
+//    public void setPlayerTeamId(Integer player_team_id) {
+//        this.player_team_id = player_team_id;
+//    }
 }
