@@ -4,6 +4,7 @@ import com.epam.brest.course.model.Team;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -34,7 +35,7 @@ public class TeamDaoImpl implements TeamDao {
     private String deletePlayersFromTeamQuery;
 
 
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public TeamDaoImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
@@ -49,9 +50,12 @@ public class TeamDaoImpl implements TeamDao {
     public Collection<Team> getAllTeams() {
 
         LOGGER.debug("getAllTeams()");
-        Collection<Team> teams = namedParameterJdbcTemplate
-                .getJdbcOperations()
-                .query(getAllTeamsQuery, new TeamRowMapper());
+//        Collection<Team> teams = namedParameterJdbcTemplate
+//                .getJdbcOperations()
+//                .query(getAllTeamsQuery, new TeamRowMapper());
+        Collection<Team> teams = namedParameterJdbcTemplate.getJdbcOperations()
+                .query(getAllTeamsQuery,
+                        BeanPropertyRowMapper.newInstance(Team.class));
         return teams;
     }
 
@@ -89,16 +93,16 @@ public class TeamDaoImpl implements TeamDao {
         namedParameterJdbcTemplate.getJdbcOperations().update(deletePlayersFromTeamQuery, teamId);
         namedParameterJdbcTemplate.getJdbcOperations().update(deleteTeamQuery, teamId);
     }
-
-    private class TeamRowMapper implements RowMapper<Team>{
-        @Override
-        public Team mapRow(ResultSet resultSet, int i) throws SQLException {
-
-            Team team = new Team();
-            team.setTeam_name(resultSet.getString(TEAM_NAME));
-            team.setTeam_country(resultSet.getString(TEAM_COUNTRY));
-            team.setTeam_id(resultSet.getInt(TEAM_ID));
-            return team;
-        }
-    }
+//
+//    private class TeamRowMapper implements RowMapper<Team>{
+//        @Override
+//        public Team mapRow(ResultSet resultSet, int i) throws SQLException {
+//
+//            Team team = new Team();
+//            team.setTeam_name(resultSet.getString(TEAM_NAME));
+//            team.setTeam_country(resultSet.getString(TEAM_COUNTRY));
+//            team.setTeam_id(resultSet.getInt(TEAM_ID));
+//            return team;
+//        }
+//    }
 }

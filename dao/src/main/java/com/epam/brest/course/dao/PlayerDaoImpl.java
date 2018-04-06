@@ -65,9 +65,14 @@ public class PlayerDaoImpl implements PlayerDao{
     public Collection<Player> getAllPlayers() {
 
         LOGGER.debug("getAllPlayers()");
-        Collection<Player> players = namedParameterJdbcTemplate
-                .getJdbcOperations()
-                .query(getAllPlayersQuery, new PlayerRowMapper());
+//        Collection<Player> players = namedParameterJdbcTemplate
+//                .getJdbcOperations()
+//                .query(getAllPlayersQuery, new PlayerRowMapper());
+        Collection<Player> players =
+                namedParameterJdbcTemplate.getJdbcOperations()
+                        .query(getAllPlayersQuery,
+                                BeanPropertyRowMapper
+                                        .newInstance(Player.class));
         return players;
     }
 
@@ -118,11 +123,11 @@ public class PlayerDaoImpl implements PlayerDao{
 
         LOGGER.debug("getPlayerByName({})", namePattern);
         SqlParameterSource namedParameter = new MapSqlParameterSource(PLAYER_NAME, namePattern);
-        Collection<Player> players =
-                namedParameterJdbcTemplate.getJdbcOperations().query
-                        (getPlayerNameQuery, new PlayerRowMapper(),
-                                namedParameter);
-//        Collection<Player> players = (Collection<Player>) namedParameterJdbcTemplate.queryForObject(getPlayerNameQuery, namedParameter, BeanPropertyRowMapper.newInstance(Player.class));
+//        Collection<Player> players =
+//                namedParameterJdbcTemplate.getJdbcOperations().query
+//                        (getPlayerNameQuery, new PlayerRowMapper(),
+//                                namedParameter);
+        Collection<Player> players = namedParameterJdbcTemplate.query(getPlayerNameQuery, namedParameter, BeanPropertyRowMapper.newInstance(Player.class));
         return players;
     }
 
@@ -160,28 +165,28 @@ public class PlayerDaoImpl implements PlayerDao{
             return player;
     }
 
-    /**
-     * Class for mapping of parameters
-     */
-    private class PlayerRowMapper implements RowMapper<Player>{
-        /**
-         * Maps parameter on player's instance
-         * @param resultSet instance which was given form table
-         * @param i iterator
-         * @return player's instance
-         * @throws SQLException some sql-exception
-         */
-        @Override
-        public Player mapRow(ResultSet resultSet, int i) throws SQLException {
-
-            Player player = new Player();
-            player.setPlayer_team_id(resultSet.getInt(PLAYER_ID));
-            player.setPlayer_name(resultSet.getString(PLAYER_NAME));
-            player.setPlayer_number(resultSet.getInt(PLAYER_NUMBER));
-            player.setPlayer_age(resultSet.getInt(PLAYER_AGE));
-            player.setPlayer_team_id(resultSet.getInt(PLAYER_TEAM_ID));
-            player.setPlayer_cost(resultSet.getInt(PLAYER_COST));
-            return player;
-        }
-    }
+//    /**
+//     * Class for mapping of parameters
+//     */
+//    private class PlayerRowMapper implements RowMapper<Player>{
+//        /**
+//         * Maps parameter on player's instance
+//         * @param resultSet instance which was given form table
+//         * @param i iterator
+//         * @return player's instance
+//         * @throws SQLException some sql-exception
+//         */
+//        @Override
+//        public Player mapRow(ResultSet resultSet, int i) throws SQLException {
+//
+//            Player player = new Player();
+//            player.setPlayer_team_id(resultSet.getInt(PLAYER_ID));
+//            player.setPlayer_name(resultSet.getString(PLAYER_NAME));
+//            player.setPlayer_number(resultSet.getInt(PLAYER_NUMBER));
+//            player.setPlayer_age(resultSet.getInt(PLAYER_AGE));
+//            player.setPlayer_team_id(resultSet.getInt(PLAYER_TEAM_ID));
+//            player.setPlayer_cost(resultSet.getInt(PLAYER_COST));
+//            return player;
+//        }
+//    }
 }

@@ -23,11 +23,11 @@ public class PlayerDaoImplTest {
     @Autowired
     PlayerDao playerDao;
 
-//    @Test
-//    public void getAllPlayersTest(){
-//        Collection<Player> players = playerDao.getAllPlayers();
-//        Assert.assertTrue(((Integer) players.size()).equals(7));
-//    }
+    @Test
+    public void getAllPlayersTest(){
+        Collection<Player> players = playerDao.getAllPlayers();
+        Assert.assertFalse(players.isEmpty());
+    }
 
     @Test
     public void deletePlayerByIdTest(){
@@ -65,9 +65,9 @@ public class PlayerDaoImplTest {
         Assert.assertTrue(newPlayer.getPlayer_cost().equals(player.getPlayer_cost()));
     }
 
-    @Test
-    public void getPlayerByName(){
-        Collection<Player> players = playerDao.getPlayerByName("pav");
-
-    }
+//    @Test
+//    public void getPlayerByName(){
+//        Collection<Player> players = playerDao.getPlayerByName("pav");
+//
+//    }
 }
