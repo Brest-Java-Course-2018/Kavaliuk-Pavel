@@ -24,4 +24,18 @@ public interface TeamDao {
      * @param teamId required id
      */
     void deleteTeamById(Integer teamId);
+
+    /**
+     * Updates required team
+     * @param team team to update
+     * @return updated team's instance
+     */
+    Team updateTeam(Team team);
+
+    /**
+     * Gets team with required ID
+     * @param teamId team's ID
+     * @return required team
+     */
+    Team getTeamById(Integer teamId);
 }

@@ -5,7 +5,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -13,8 +12,6 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Collection;
 
 public class PlayerDaoImpl implements PlayerDao{
@@ -52,7 +49,8 @@ public class PlayerDaoImpl implements PlayerDao{
      */
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public PlayerDaoImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public PlayerDaoImpl
+            (NamedParameterJdbcTemplate namedParameterJdbcTemplate){
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
@@ -65,9 +63,6 @@ public class PlayerDaoImpl implements PlayerDao{
     public Collection<Player> getAllPlayers() {
 
         LOGGER.debug("getAllPlayers()");
-//        Collection<Player> players = namedParameterJdbcTemplate
-//                .getJdbcOperations()
-//                .query(getAllPlayersQuery, new PlayerRowMapper());
         Collection<Player> players =
                 namedParameterJdbcTemplate.getJdbcOperations()
                         .query(getAllPlayersQuery,
@@ -109,7 +104,8 @@ public class PlayerDaoImpl implements PlayerDao{
     public void deletePlayerById(Integer playerId) {
 
         LOGGER.debug("deletePlayerById({})", playerId);
-        namedParameterJdbcTemplate.getJdbcOperations().update(deletePlayerByIdQuery, playerId);
+        namedParameterJdbcTemplate.getJdbcOperations()
+                .update(deletePlayerByIdQuery, playerId);
     }
 
     /**
@@ -122,12 +118,11 @@ public class PlayerDaoImpl implements PlayerDao{
     public Collection<Player> getPlayerByName(String namePattern) {
 
         LOGGER.debug("getPlayerByName({})", namePattern);
-        SqlParameterSource namedParameter = new MapSqlParameterSource(PLAYER_NAME, namePattern);
-//        Collection<Player> players =
-//                namedParameterJdbcTemplate.getJdbcOperations().query
-//                        (getPlayerNameQuery, new PlayerRowMapper(),
-//                                namedParameter);
-        Collection<Player> players = namedParameterJdbcTemplate.query(getPlayerNameQuery, namedParameter, BeanPropertyRowMapper.newInstance(Player.class));
+        SqlParameterSource namedParameter =
+                new MapSqlParameterSource(PLAYER_NAME, namePattern);
+        Collection<Player> players = namedParameterJdbcTemplate
+                .query(getPlayerNameQuery, namedParameter,
+                        BeanPropertyRowMapper.newInstance(Player.class));
         return players;
     }
 
@@ -161,32 +156,6 @@ public class PlayerDaoImpl implements PlayerDao{
                 namedParameterJdbcTemplate.queryForObject(getPlayerByIdQuery,
                         namedParameter,
                         BeanPropertyRowMapper.newInstance(Player.class));
-
-            return player;
+        return player;
     }
-
-//    /**
-//     * Class for mapping of parameters
-//     */
-//    private class PlayerRowMapper implements RowMapper<Player>{
-//        /**
-//         * Maps parameter on player's instance
-//         * @param resultSet instance which was given form table
-//         * @param i iterator
-//         * @return player's instance
-//         * @throws SQLException some sql-exception
-//         */
-//        @Override
-//        public Player mapRow(ResultSet resultSet, int i) throws SQLException {
-//
-//            Player player = new Player();
-//            player.setPlayer_team_id(resultSet.getInt(PLAYER_ID));
-//            player.setPlayer_name(resultSet.getString(PLAYER_NAME));
-//            player.setPlayer_number(resultSet.getInt(PLAYER_NUMBER));
-//            player.setPlayer_age(resultSet.getInt(PLAYER_AGE));
-//            player.setPlayer_team_id(resultSet.getInt(PLAYER_TEAM_ID));
-//            player.setPlayer_cost(resultSet.getInt(PLAYER_COST));
-//            return player;
-//        }
-//    }
 }

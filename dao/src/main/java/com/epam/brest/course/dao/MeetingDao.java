@@ -18,4 +18,10 @@ public interface MeetingDao {
      * @return
      */
     Collection<Meeting> getAllMeetings();
+
+    /**
+     * Deletes meeting with required id
+     * @param meetingId required meeting's id
+     */
+    void deleteMeeting(Integer meetingId);
 }

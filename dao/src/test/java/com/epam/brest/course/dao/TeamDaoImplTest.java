@@ -17,6 +17,9 @@ import java.util.Collection;
 @Rollback
 public class TeamDaoImplTest {
 
+    private static final String TEAM_NAME = "team name";
+    private static final String TEAM_COUNTRY = "team country";
+
     @Autowired
     TeamDao teamDao;
 
@@ -30,7 +33,7 @@ public class TeamDaoImplTest {
     @Test
     public void addTeamTest(){
 
-        Team team = new Team(3,"team name", "team country");
+        Team team = new Team(3, TEAM_NAME, TEAM_COUNTRY);
         Team team1 = teamDao.addTeam(team);
         Assert.assertTrue(team1.getTeam_country()
                 .equals(team.getTeam_country()));
@@ -42,6 +45,27 @@ public class TeamDaoImplTest {
 
         Integer teamsCount = teamDao.getAllTeams().size();
         teamDao.deleteTeamById(1);
-        Assert.assertTrue(((Integer) teamDao.getAllTeams().size()).equals(teamsCount - 1));
+        Assert.assertTrue(((Integer) teamDao.getAllTeams()
+                .size()).equals(teamsCount - 1));
+    }
+
+    @Test
+    public void updateTeamTest(){
+
+        Team team = new Team(3, TEAM_NAME, TEAM_COUNTRY);
+        teamDao.addTeam(team);
+        team.setTeam_name(TEAM_NAME + TEAM_NAME);
+        team.setTeam_country(TEAM_COUNTRY + TEAM_COUNTRY);
+        Team team1 = teamDao.updateTeam(team);
+        Assert.assertTrue(team1.getTeam_name().equals(team.getTeam_name()));
+        Assert.assertTrue(team1.getTeam_country()
+                .equals(team.getTeam_country()));
+    }
+
+    @Test
+    public void getTeamByIdTest(){
+
+        Team team = teamDao.getTeamById(1);
+        Assert.assertTrue(team.getTeam_name().equals("team 1"));
     }
 }

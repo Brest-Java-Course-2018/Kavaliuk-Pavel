@@ -22,7 +22,9 @@ public class MeetingDaoImpl implements MeetingDao {
     @Value("${meetings.addNewMeeting}")
     private String addNewMeetingQuery;
 
-    private static final String MEETING_ID = "meeting_id";
+    @Value("${meetings.deleteMeeting}")
+    private String deleteMeetingQuery;
+
     private static final String FIRST_TEAM = "first_team";
     private static final String SECOND_TEAM = "second_team";
     private static final String MEETING_DATE = "meeting_date";
@@ -33,6 +35,19 @@ public class MeetingDaoImpl implements MeetingDao {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+
+    /**
+     * Deletes meeting with required id
+     * @param meetingId required meeting's id
+     */
+    @Override
+    public void deleteMeeting(Integer meetingId) {
+
+        LOGGER.debug("deleteMeeting({})", meetingId);
+
+        namedParameterJdbcTemplate.getJdbcOperations()
+                .update(deleteMeetingQuery, meetingId);
+    }
 
     /**
      * Adds new meeting into DB

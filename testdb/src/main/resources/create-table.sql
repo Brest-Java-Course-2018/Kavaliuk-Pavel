@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS meetings;
 CREATE TABLE meetings (
 
   meeting_id INT NOT NULL AUTO_INCREMENT,
-  first_team INT NOT NULL,
-  second_team INT NOT NULL,
+  first_team INT,
+  second_team INT,
   meeting_date DATE NOT NULL,
   PRIMARY KEY (meeting_id),
   FOREIGN KEY (first_team) REFERENCES teams (team_id),

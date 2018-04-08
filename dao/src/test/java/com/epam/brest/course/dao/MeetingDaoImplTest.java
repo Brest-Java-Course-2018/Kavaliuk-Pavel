@@ -44,4 +44,16 @@ public class MeetingDaoImplTest {
         Assert.assertTrue(meeting1.getMeeting_date().toString()
                 .equals(meeting.getMeeting_date().toString()));
     }
+
+    @Test
+    public void deleteMeetingTest(){
+
+        Meeting meeting = new Meeting(FIRST_TEAM, SECOND_TEAM, MEETING_DATE);
+        meetingDao.addMeeting(meeting);
+        Integer meetingCounter = meetingDao.getAllMeetings().size();
+        meetingDao.deleteMeeting(meeting.getMeeting_id());
+        Assert.assertTrue(((Integer) meetingDao.getAllMeetings()
+                .size()).equals(meetingCounter - 1));
+    }
 }
+
