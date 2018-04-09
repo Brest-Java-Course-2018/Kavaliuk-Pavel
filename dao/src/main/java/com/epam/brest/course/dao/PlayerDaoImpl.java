@@ -49,8 +49,7 @@ public class PlayerDaoImpl implements PlayerDao{
      */
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public PlayerDaoImpl
-            (NamedParameterJdbcTemplate namedParameterJdbcTemplate){
+    public PlayerDaoImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate){
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 

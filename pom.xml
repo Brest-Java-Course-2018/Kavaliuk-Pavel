@@ -10,6 +10,7 @@
         <module>model</module>
         <module>dao</module>
         <module>testdb</module>
+        <module>service</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -52,6 +53,11 @@
             <dependency>
                 <groupId>com.epam.brest.course</groupId>
                 <artifactId>dao</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.brest.course</groupId>
+                <artifactId>service</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
