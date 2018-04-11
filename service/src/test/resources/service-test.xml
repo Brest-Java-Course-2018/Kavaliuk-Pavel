@@ -17,4 +17,16 @@
         <constructor-arg ref="playerDao"/>
     </bean>
 
+    <bean id="teamDao" class="com.epam.brest.course.dao.TeamDaoImpl">
+        <constructor-arg name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="teamService" class="com.epam.brest.course.service.TeamServiceImpl">
+        <constructor-arg ref="teamDao"/>
+    </bean>
+
+    <bean id="meetingDao" class="com.epam.brest.course.dao.MeetingDaoImpl">
+        <constructor-arg name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+    </bean>
+
 </beans>
