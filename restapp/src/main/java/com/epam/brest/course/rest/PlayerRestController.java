@@ -4,6 +4,7 @@ import com.epam.brest.course.model.Player;
 import com.epam.brest.course.service.PlayerService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ public class PlayerRestController {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
+    @Autowired
     private PlayerService playerService;
 
     @GetMapping(value = "/players")
