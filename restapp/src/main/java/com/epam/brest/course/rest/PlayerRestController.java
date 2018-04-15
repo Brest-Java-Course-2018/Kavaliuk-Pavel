@@ -34,11 +34,19 @@ public class PlayerRestController {
         return playerService.addPlayer(player);
     }
 
+    @GetMapping(value = "/players/{id}")
+    @ResponseStatus(HttpStatus.FOUND)
+    Player getPlayerById(@PathVariable Integer id){
+
+        LOGGER.debug("getPlayerByIdREST({})", id);
+        return playerService.getPlayerById(id);
+    }
+
     @DeleteMapping(value = "/players/{id}")
     @ResponseStatus(HttpStatus.FOUND)
-    void deletePlayerById(@PathVariable Integer playerId){
+    void deletePlayerById(@PathVariable Integer id){
 
-        LOGGER.debug("deletePlayerByIdREST({})", playerId);
-        playerService.deletePlayerById(playerId);
+        LOGGER.debug("deletePlayerByIdREST({})", id);
+        playerService.deletePlayerById(id);
     }
 }
