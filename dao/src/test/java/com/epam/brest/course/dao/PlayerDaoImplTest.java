@@ -65,9 +65,9 @@ public class PlayerDaoImplTest {
         Assert.assertTrue(newPlayer.getPlayer_cost().equals(player.getPlayer_cost()));
     }
 
-//    @Test
-//    public void getPlayerByName(){
-//        Collection<Player> players = playerDao.getPlayerByName("pav");
-//
-//    }
+    @Test
+    public void getPlayerByName(){
+        Collection<Player> players = playerDao.getPlayerByName("pav");
+        Assert.assertTrue(((Integer) players.size()).equals(4));
+    }
 }

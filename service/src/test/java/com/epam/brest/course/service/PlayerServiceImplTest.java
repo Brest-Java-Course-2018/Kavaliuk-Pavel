@@ -20,6 +20,8 @@ public class PlayerServiceImplTest {
     @Autowired
     private PlayerService playerService;
 
+    private static final String PATTERN = "pav";
+
     @Test
     public void getAllPlayersTest(){
 
@@ -34,5 +36,12 @@ public class PlayerServiceImplTest {
         playerService.deletePlayerById(1);
         Assert.assertTrue(((Integer) playerService.getAllPlayers().size())
                 .equals(playersCounter - 1));
+    }
+
+    @Test
+    public void getPlayerByName(){
+
+        Collection<Player> players = playerService.getPlayerByName(PATTERN);
+        Assert.assertTrue(((Integer) players.size()).equals(4));
     }
 }

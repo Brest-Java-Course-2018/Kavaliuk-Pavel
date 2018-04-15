@@ -139,7 +139,7 @@ public class PlayerControllerMockTest {
         expect(playerService.getPlayerById(1)).andReturn(player1);
         replay(playerService);
 
-        mockMvc.perform(get("/players/{id}", 1)
+        mockMvc.perform(get("/players/search_by_id/{id}", 1)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isFound())
@@ -151,6 +151,33 @@ public class PlayerControllerMockTest {
                 .andExpect(jsonPath("player_age", is(22)))
                 .andExpect(jsonPath("player_cost", is(12000)))
                 .andExpect(jsonPath("player_team_id", is(1)));
+    }
+
+    @Test
+    public void getPlayerByNameMock() throws Exception{
+
+        expect(playerService.getPlayerByName("play"))
+                .andReturn(Arrays.asList(player1, player2));
+        replay(playerService);
+
+        mockMvc.perform(get("/players/search_by_name/{pattern}", "play")
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isFound())
+                .andExpect(content()
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$[0].player_id", is(1)))
+                .andExpect(jsonPath("$[0].player_name", is("player 1")))
+                .andExpect(jsonPath("$[0].player_number", is(1111)))
+                .andExpect(jsonPath("$[0].player_age", is(22)))
+                .andExpect(jsonPath("$[0].player_cost", is(12000)))
+                .andExpect(jsonPath("$[0].player_team_id", is(1)))
+                .andExpect(jsonPath("$[1].player_id", is(2)))
+                .andExpect(jsonPath("$[1].player_name", is("player 2")))
+                .andExpect(jsonPath("$[1].player_number", is(2222)))
+                .andExpect(jsonPath("$[1].player_age", is(12)))
+                .andExpect(jsonPath("$[1].player_cost", is(10000)))
+                .andExpect(jsonPath("$[1].player_team_id", is(1)));
     }
 
     @Test

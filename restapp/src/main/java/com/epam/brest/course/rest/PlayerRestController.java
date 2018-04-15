@@ -34,7 +34,7 @@ public class PlayerRestController {
         return playerService.addPlayer(player);
     }
 
-    @GetMapping(value = "/players/{id}")
+    @GetMapping(value = "/players/search_by_id/{id}")
     @ResponseStatus(HttpStatus.FOUND)
     Player getPlayerById(@PathVariable Integer id){
 
@@ -48,5 +48,13 @@ public class PlayerRestController {
 
         LOGGER.debug("deletePlayerByIdREST({})", id);
         playerService.deletePlayerById(id);
+    }
+
+    @GetMapping(value = "/players/search_by_name/{pattern}")
+    @ResponseStatus(HttpStatus.FOUND)
+    Collection<Player> getPlayerByName(@PathVariable String pattern){
+
+        LOGGER.debug("getPlayerByName({})", pattern);
+        return playerService.getPlayerByName(pattern);
     }
 }

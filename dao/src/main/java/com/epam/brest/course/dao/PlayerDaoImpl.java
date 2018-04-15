@@ -39,7 +39,7 @@ public class PlayerDaoImpl implements PlayerDao{
     private String updatePlayerQuery;
 
     @Value("${players.getPlayerByName}")
-    private String getPlayerNameQuery;
+    private String getPlayerByNameQuery;
 
     @Value("${players.getPlayerById}")
     private String getPlayerByIdQuery;
@@ -117,10 +117,12 @@ public class PlayerDaoImpl implements PlayerDao{
     public Collection<Player> getPlayerByName(String namePattern) {
 
         LOGGER.debug("getPlayerByName({})", namePattern);
-        SqlParameterSource namedParameter =
-                new MapSqlParameterSource(PLAYER_NAME, namePattern);
+
+        MapSqlParameterSource namedParameter =
+                new MapSqlParameterSource(PLAYER_NAME, "%" + namePattern + "%");
+
         Collection<Player> players = namedParameterJdbcTemplate
-                .query(getPlayerNameQuery, namedParameter,
+                .query(getPlayerByNameQuery, namedParameter,
                         BeanPropertyRowMapper.newInstance(Player.class));
         return players;
     }
