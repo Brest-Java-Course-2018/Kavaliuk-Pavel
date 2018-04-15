@@ -34,4 +34,33 @@ public class TeamServiceImplTest {
         Assert.assertTrue(((Integer) teamService
                 .getAllTeams().size()).equals(2));
     }
+
+    @Test
+    public void deleteTeamTest(){
+
+        Integer teamCounter = teamService.getAllTeams().size();
+        teamService.deleteTeamById(1);
+        Assert.assertTrue(((Integer) teamService.getAllTeams().size())
+                .equals(teamCounter - 1));
+    }
+
+    @Test
+    public void getTeamByIdTest(){
+
+        Team team = teamService.getTeamById(1);
+        Assert.assertTrue(team.getTeam_id().equals(1));
+        Assert.assertTrue(team.getTeam_name().equals("team 1"));
+        Assert.assertTrue(team.getTeam_country().equals("country 1"));
+    }
+
+    @Test
+    public void updateTeamTest(){
+
+        Team team = new Team(1,"test","test");
+        teamService.updateTeam(team);
+        Team team1 = teamService.getTeamById(1);
+        Assert.assertTrue(team1.getTeam_id().equals(1));
+        Assert.assertTrue(team1.getTeam_name().equals("test"));
+        Assert.assertTrue(team1.getTeam_country().equals("test"));
+    }
 }

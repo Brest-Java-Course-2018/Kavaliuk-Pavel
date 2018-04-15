@@ -61,10 +61,10 @@ public class TeamServiceImpl implements TeamService {
      * @return updated team's instance
      */
     @Override
-    public Team updateTeam(Team team) {
+    public void updateTeam(Team team) {
 
         LOGGER.debug("updateTeam({})", team);
-        return teamDao.updateTeam(team);
+        teamDao.updateTeam(team);
     }
 
     /**

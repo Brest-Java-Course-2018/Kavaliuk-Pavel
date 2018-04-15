@@ -30,7 +30,7 @@ public interface TeamService {
      * @param team team to update
      * @return updated team's instance
      */
-    Team updateTeam(Team team);
+    void updateTeam(Team team);
 
     /**
      * Gets team with required ID

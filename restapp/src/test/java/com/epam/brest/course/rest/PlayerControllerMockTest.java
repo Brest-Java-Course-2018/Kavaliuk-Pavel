@@ -3,6 +3,7 @@ package com.epam.brest.course.rest;
 import com.epam.brest.course.model.Player;
 import com.epam.brest.course.model.Team;
 import com.epam.brest.course.service.PlayerService;
+import com.google.gson.Gson;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +22,7 @@ import static org.easymock.EasyMock.*;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -40,10 +42,12 @@ public class PlayerControllerMockTest {
     @Autowired
     private PlayerRestController playerRestController;
 
-    private MockMvc mockMvc;
-
     @Autowired
     private PlayerService playerService;
+
+    private MockMvc mockMvc;
+
+
 
     @Before
     public void setUp(){
@@ -201,6 +205,20 @@ public class PlayerControllerMockTest {
                 .andExpect(jsonPath("$[0].player_age", is(22)))
                 .andExpect(jsonPath("$[0].player_cost", is(12000)))
                 .andExpect(jsonPath("$[0].player_team_id", is(1)));
+    }
+
+    public void updatePlayer() throws Exception{
+
+        playerService.updatePlayer(player1);
+        replay(playerService);
+
+        Gson gson = new Gson();
+        mockMvc.perform(post("/players/update/{id}", 1)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(gson.toJson(player1))
+                .accept(MediaType.APPLICATION_JSON_UTF8))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 
 //    @Test

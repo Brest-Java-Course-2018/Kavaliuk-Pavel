@@ -48,6 +48,14 @@
         <constructor-arg ref="playerDao"/>
     </bean>
 
+    <bean id="teamDao" class="com.epam.brest.course.dao.TeamDaoImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="teamService" class="com.epam.brest.course.service.TeamServiceImpl">
+        <constructor-arg ref="teamDao"/>
+    </bean>
+
 
 
     <mvc:annotation-driven/>

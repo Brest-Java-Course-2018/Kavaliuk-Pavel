@@ -114,13 +114,12 @@ public class TeamDaoImpl implements TeamDao {
      * @return updated team's instance
      */
     @Override
-    public Team updateTeam(Team team) {
+    public void updateTeam(Team team) {
 
         LOGGER.debug("updateTeam({})", team);
         SqlParameterSource namedParameter =
                 new BeanPropertySqlParameterSource(team);
         namedParameterJdbcTemplate.update(updateTeamQuery, namedParameter);
-        return team;
     }
 
     /**

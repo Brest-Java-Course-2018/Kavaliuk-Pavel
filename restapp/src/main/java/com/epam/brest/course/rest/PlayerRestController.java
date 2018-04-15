@@ -57,4 +57,12 @@ public class PlayerRestController {
         LOGGER.debug("getPlayerByName({})", pattern);
         return playerService.getPlayerByName(pattern);
     }
+
+    @PostMapping(value = "/players/update/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    void updatePlayerMock(@RequestBody Player player, @PathVariable Integer id){
+
+        LOGGER.debug("updatePlayer({})", player);
+        playerService.updatePlayer(player);
+    }
 }
