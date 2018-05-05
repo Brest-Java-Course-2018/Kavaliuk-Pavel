@@ -18,6 +18,7 @@ import java.util.Arrays;
 
 import static org.easymock.EasyMock.*;
 import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -77,6 +78,18 @@ public class TeamControllerMockTest {
                 .andExpect(jsonPath("$[1].team_id", is(2)))
                 .andExpect(jsonPath("$[1].team_name", is("team 2")))
                 .andExpect(jsonPath("$[1].team_country", is("country 2")));
+    }
+
+    @Test
+    public void deleteTeamMock() throws Exception{
+
+        teamService.deleteTeamById(1);
+        replay(teamService);
+
+        mockMvc.perform(delete("/teams/{id}", 1)
+                .accept(MediaType.APPLICATION_JSON_UTF8))
+                .andDo(print())
+                .andExpect(status().isFound());
     }
 
 
