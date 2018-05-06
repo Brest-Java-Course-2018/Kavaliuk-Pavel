@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import java.sql.Date;
 import java.util.Collection;
 
 public class MeetingDaoImpl implements MeetingDao {
@@ -25,9 +26,16 @@ public class MeetingDaoImpl implements MeetingDao {
     @Value("${meetings.deleteMeeting}")
     private String deleteMeetingQuery;
 
+    @Value("${meetings.searchBetweenDates}")
+    private String getMeetingsBetweenDatesQuery;
+
+    private static final String WINNER = "winner";
+    private static final String SCORE = "score";
     private static final String FIRST_TEAM = "first_team";
     private static final String SECOND_TEAM = "second_team";
     private static final String MEETING_DATE = "meeting_date";
+    private static final String FIRST_DATE = "firstDate";
+    private static final String SECOND_DATE = "secondDate";
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -64,6 +72,8 @@ public class MeetingDaoImpl implements MeetingDao {
         namedParameter.addValue(FIRST_TEAM, meeting.getFirst_team());
         namedParameter.addValue(SECOND_TEAM, meeting.getSecond_team());
         namedParameter.addValue(MEETING_DATE, meeting.getMeeting_date());
+        namedParameter.addValue(WINNER, meeting.getWinner());
+        namedParameter.addValue(SCORE, meeting.getScore());
 
         KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
 
@@ -88,5 +98,27 @@ public class MeetingDaoImpl implements MeetingDao {
                                 BeanPropertyRowMapper
                                         .newInstance(Meeting.class));
         return meetings;
+    }
+
+    /**
+     * Returns meeting which exists between determined date interval
+     *
+     * @param firstDate  the first date in interval
+     * @param secondDate the second date in interval
+     * @return collection with matches which was in required date interval
+     */
+    @Override
+    public Collection<Meeting> getMeetingsByDatesInterval(Date firstDate, Date secondDate) {
+
+        LOGGER.debug("getMeetingsByDatesInterval({},{})", firstDate, secondDate);
+
+        MapSqlParameterSource namedParameter = new MapSqlParameterSource();
+        namedParameter.addValue(FIRST_DATE, firstDate);
+        namedParameter.addValue(SECOND_DATE, secondDate);
+
+        Collection<Meeting> players = namedParameterJdbcTemplate
+                .query(getMeetingsBetweenDatesQuery, namedParameter,
+                        BeanPropertyRowMapper.newInstance(Meeting.class));
+        return players;
     }
 }

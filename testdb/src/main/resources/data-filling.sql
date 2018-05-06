@@ -22,4 +22,5 @@ VALUES ('Natasha Pavel', 12, 22, 2500, 2);
 INSERT INTO players (player_name, player_number, player_age, player_cost, player_team_id)
 VALUES ('Gena Pavel', 12, 22, 2500, 2);
 
-INSERT INTO meetings (meeting_id, first_team, second_team, meeting_date) VALUES (1, 1, 2, '2018-03-25');
+INSERT INTO meetings (meeting_id, first_team, second_team, winner, score, meeting_date) VALUES (1, 1, 2, 1, '2:1', '2018-03-25');
+INSERT INTO meetings (meeting_id, first_team, second_team, winner, score, meeting_date) VALUES (2, 2, 1, 2, '2:1', '2018-04-26');

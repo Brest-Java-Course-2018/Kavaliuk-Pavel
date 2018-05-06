@@ -40,6 +40,9 @@ public class TeamDaoImpl implements TeamDao {
     @Value("${meetings.setSecondTeamIdAsNull}")
     private String deleteSecondTeamQuery;
 
+    @Value("${meetings.setWinnerIdAsNull}")
+    private String deleteWinner;
+
     @Value("${teams.updateTeam}")
     private String updateTeamQuery;
 
@@ -105,7 +108,10 @@ public class TeamDaoImpl implements TeamDao {
         namedParameterJdbcTemplate.getJdbcOperations()
                 .update(deleteSecondTeamQuery, teamId);
         namedParameterJdbcTemplate.getJdbcOperations()
+                .update(deleteWinner, teamId);
+        namedParameterJdbcTemplate.getJdbcOperations()
                 .update(deleteTeamQuery, teamId);
+
     }
 
     /**

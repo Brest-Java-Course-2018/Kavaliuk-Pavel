@@ -26,8 +26,11 @@ CREATE TABLE meetings (
   meeting_id INT NOT NULL AUTO_INCREMENT,
   first_team INT,
   second_team INT,
+  winner INT,
+  score VARCHAR(5),
   meeting_date DATE NOT NULL,
   PRIMARY KEY (meeting_id),
+  FOREIGN KEY (winner) REFERENCES teams (team_id),
   FOREIGN KEY (first_team) REFERENCES teams (team_id),
   FOREIGN KEY (second_team) REFERENCES teams (team_id)
 );

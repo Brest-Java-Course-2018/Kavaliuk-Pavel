@@ -12,6 +12,7 @@
         <module>testdb</module>
         <module>service</module>
         <module>restapp</module>
+        <module>webapp</module>
     </modules>
 
     <packaging>pom</packaging>
