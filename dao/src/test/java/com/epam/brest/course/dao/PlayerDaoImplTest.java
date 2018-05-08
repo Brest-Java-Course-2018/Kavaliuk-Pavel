@@ -38,6 +38,7 @@ public class PlayerDaoImplTest {
                 .size()).equals(wasCount - 1));
     }
 
+
     @Test
     public void addPlayerTest(){
         Player player = new Player(PLAYER_NUMBER, PLAYER_NAME,
