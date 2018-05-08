@@ -5,6 +5,7 @@ import com.epam.brest.course.model.Meeting;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.sql.Date;
 import java.util.Collection;
 
 public class MeetingServiceImpl implements MeetingService{
@@ -51,5 +52,19 @@ public class MeetingServiceImpl implements MeetingService{
 
         LOGGER.debug("deleteMeeting()");
         meetingDao.deleteMeeting(meetingId);
+    }
+
+    /**
+     * Returns meeting which exists between determined date interval
+     *
+     * @param firstDate  the first date in interval
+     * @param secondDate the second date in interval
+     * @return collection with matches which was in required date interval
+     */
+    @Override
+    public Collection<Meeting> searchMeetingBetweenDates(Date firstDate, Date secondDate) {
+
+        LOGGER.debug("searchMeetingBetweenDates({}, {})", firstDate, secondDate);
+        return meetingDao.getMeetingsByDatesInterval(firstDate, secondDate);
     }
 }
