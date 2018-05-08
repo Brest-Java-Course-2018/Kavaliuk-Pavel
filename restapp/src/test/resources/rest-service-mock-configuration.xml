@@ -15,5 +15,9 @@
         <constructor-arg value="com.epam.brest.course.service.TeamService"/>
     </bean>
 
+    <bean id="meetingService" class="org.easymock.EasyMock" factory-method="createMock">
+        <constructor-arg value="com.epam.brest.course.service.MeetingService"/>
+    </bean>
+
     <context:component-scan base-package="com.epam.brest.course.rest"/>
 </beans>

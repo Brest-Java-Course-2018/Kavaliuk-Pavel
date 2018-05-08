@@ -56,6 +56,14 @@
         <constructor-arg ref="teamDao"/>
     </bean>
 
+    <bean id="meetingService" class="com.epam.brest.course.service.MeetingServiceImpl">
+        <constructor-arg ref="meetingDao"/>
+    </bean>
+
+    <bean id="meetingDao" class="com.epam.brest.course.dao.MeetingDaoImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
 
 
     <mvc:annotation-driven/>

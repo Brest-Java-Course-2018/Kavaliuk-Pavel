@@ -72,7 +72,8 @@ public class MeetingDaoImplTest {
     @Test
     public void getMeetingsBetweenDatesTest(){
 
-        Collection<Meeting> meetings = meetingDao.getMeetingsByDatesInterval(FIRST_DATE, SECOND_DATE);
+        Collection<Meeting> meetings = meetingDao
+                .getMeetingsByDatesInterval(FIRST_DATE, SECOND_DATE);
         Assert.assertFalse(meetings.isEmpty());
     }
 }

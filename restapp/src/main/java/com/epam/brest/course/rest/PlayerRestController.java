@@ -60,7 +60,7 @@ public class PlayerRestController {
 
     @PostMapping(value = "/players/update/{id}")
     @ResponseStatus(HttpStatus.OK)
-    void updatePlayerMock(@RequestBody Player player, @PathVariable Integer id){
+    void updatePlayer(@RequestBody Player player, @PathVariable Integer id){
 
         LOGGER.debug("updatePlayer({})", player);
         playerService.updatePlayer(player);
